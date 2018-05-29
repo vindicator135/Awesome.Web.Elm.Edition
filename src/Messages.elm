@@ -1,5 +1,8 @@
 module Messages exposing (..)
 
-type Msg =
-    NoOp
-    | BlogMsg
+import Blogs.Messages
+
+
+type Msg
+    = NoOp
+    | BlogMsg Blogs.Messages.Msg

@@ -1,9 +1,9 @@
-module Blog.Messages exposing (..)
+module Blogs.Messages exposing (..)
 
-import Http
-import Blog.Models exposing (Blog)
+import Http exposing (..)
+import Blogs.Models exposing (Blog)
 
 
 type Msg
-    NoOp
+    = NoOp
     | FetchAllDone (Result Http.Error (List Blog))
