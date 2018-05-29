@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TodoMVC in Elm - [Try It!](http://evancz.github.io/elm-todomvc)
 
 All of the Elm code lives in `Todo.elm` and relies on the [elm-lang/html][html] library. 
@@ -16,3 +17,6 @@ elm-make Todo.elm --output elm.js
 ```
 
 Then open `index.html` in your browser!
+=======
+# Awesome.Web.Elm.Edition
+>>>>>>> c9771da2a339f2aa8d71355bfb98447669dbd123
