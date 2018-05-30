@@ -67,5 +67,5 @@ linkView blog =
     tr []
         [ cell td [ text <| toString blog.blogId ]
         , cell td [ text <| toString blog.title ]
-        , cell td [ a [ href "/123123", title "View"] [] ]
+        , cell td [ a [ href <| "/blogs/" ++ toString blog.blogId ] [ p [ ] [ text "View" ] ] ]
         ]
