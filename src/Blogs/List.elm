@@ -61,11 +61,14 @@ linksView blogs =
         , tbody [] <| List.map linkView <| blogs
         ]
 
+linkedText : String -> String -> Html Msg
+linkedText relativePath displayText =
+    a [ href relativePath ] [ p [] [ text displayText ] ]
 
 linkView : Blog -> Html Msg
 linkView blog =
     tr []
         [ cell td [ text <| toString blog.blogId ]
         , cell td [ text <| toString blog.title ]
-        , cell td [ a [ href "/123123", title "View"] [] ]
+        , cell td [ linkedText ("/blog/" ++ (toString blog.blogId)) "View" ]
         ]
