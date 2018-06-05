@@ -5,11 +5,13 @@ import Models exposing (init, Model)
 import View exposing (view)
 import Update exposing (update)
 import Messages exposing (..)
+import Navigation exposing (Location)
+import Routing
 
 
 main : Program Never Model Msg
 main =
-    Html.program
+    Navigation.program OnLocationChange
         { init = init
         , view = view
         , update = update
