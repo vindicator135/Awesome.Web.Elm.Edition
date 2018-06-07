@@ -1,15 +1,23 @@
 module Routing exposing (..)
 
 import Navigation exposing (Location)
-import Models exposing (Route(..))
+import UrlParser exposing (..)
 
-matchers : Parser (Route -> a) -> a
+
+type Route
+    = BlogListRoute
+    | BlogEntryRoute Int
+    | NotFoundRoute
+
+
+matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map BlogListRoute top
-        , map BlogEntryRoute (s "blogs" </> string)
+        , map BlogEntryRoute (s "blogs" </> int)
         , map BlogListRoute (s "blogs")
         ]
+
 
 parseLocation : Location -> Route
 parseLocation location =

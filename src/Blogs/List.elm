@@ -70,5 +70,5 @@ linkView blog =
     tr []
         [ cell td [ text <| toString blog.blogId ]
         , cell td [ text <| toString blog.title ]
-        , cell td [ linkedText ("/blog/" ++ (toString blog.blogId)) "View" ]
+        , cell td [ linkedText ("#/blogs/" ++ (toString blog.blogId)) "View" ]
         ]
