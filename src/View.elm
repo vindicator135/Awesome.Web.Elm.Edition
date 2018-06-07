@@ -5,24 +5,23 @@ import Models exposing (Model)
 import Messages exposing (Msg(BlogMsg))
 import Blogs.List
 import Routing exposing (..)
+import Blogs.View exposing (..)
 
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ Html.map BlogMsg <| Blogs.List.view model.blogs
-        , displayRoute <| model.route
-        ]
-
-
-displayRoute : Route -> Html Msg
-displayRoute route =
-    case route of
-        BlogEntryRoute blogId ->
-            text (toString blogId)
-
+    case model.route of
         BlogListRoute ->
-            text "List Route"
+            div []
+                [ Html.map BlogMsg <| Blogs.List.view model.blogs
+                ]
+        
+        BlogEntryRoute blogId ->
+            div []
+                [ Html.map BlogMsg <| Blogs.List.view model.blogs
+                , Html.map BlogMsg <| Blogs.View.readView (Maybe.withDefault emptyBlog <| List.head <| List.filter (\blog -> blog.blogId == blogId) model.blogs)
+                ]
 
-        _ ->
-            text "Nothing"
+        NotFoundRoute ->
+            div []
+                [ text "Route not defined"]

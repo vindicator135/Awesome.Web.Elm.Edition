@@ -7,3 +7,7 @@ type alias Blog =
     , content : String
     , published : String
     }
+
+emptyBlog : Blog
+emptyBlog =
+    Blog 0 "n/a" "n/a" "never published"

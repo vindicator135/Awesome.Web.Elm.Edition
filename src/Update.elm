@@ -13,8 +13,6 @@ update msg model =
 
         BlogMsg _ ->
             ( model, Cmd.none )
-        OnLocationChange _ ->
-            ( model, Cmd.none )
 
         OnLocationChange location ->
             let
