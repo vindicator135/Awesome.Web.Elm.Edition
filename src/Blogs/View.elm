@@ -2,6 +2,7 @@ module Blogs.View exposing (..)
 
 import Html exposing (..)
 import Blogs.Models exposing (Blog)
+import Blogs.Messages exposing (..)
 
 readView : Blog -> Html Msg
 readView blog =
@@ -11,8 +12,12 @@ readView blog =
         ]
 
 header : String -> String -> Html Msg 
-header title publised =
+header title published =
     div []
         [ h1 [] [ text title ] 
         , h2 [] [ text published ]
         ]
+
+body : String -> Html Msg
+body content =
+    p [] [text content]
