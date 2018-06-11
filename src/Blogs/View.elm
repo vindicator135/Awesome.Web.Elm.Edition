@@ -8,7 +8,7 @@ readView : Blog -> Html Msg
 readView blog =
     div []
         [ header blog.title blog.published
-        ]
+        , body blog.content]
 
 header : String -> String -> Html Msg 
 header title published =
@@ -16,6 +16,10 @@ header title published =
         [ h1 [] [ text title ] 
         , h2 [] [ text published ]
         ]
+
+body : String -> Html Msg
+body content =
+    p [] [text content]
 
 emptyBlog : Blog
 emptyBlog =
