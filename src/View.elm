@@ -5,6 +5,7 @@ import Models exposing (Model)
 import Messages exposing (Msg(BlogMsg))
 import Blogs.List
 import Blogs.View
+import Blogs.Models exposing (..)
 import Routing exposing (..)
 import Blogs.View exposing (..)
 

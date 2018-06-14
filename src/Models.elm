@@ -18,8 +18,8 @@ init location =
     let
         model =
             Model
-                [ Blog 1 "3 Tips to successfully land your IELTS" "The International English Language Testing System (IELTS) is one among many great feats every aspiring migrant gets to hurdle with." "03 May 2016"
-                , Blog 2 "Expat tips to save money" "There's not enough money at the end of the time." "04 June 2016"
+                [ Blog 1 "3 Tips to successfully land your IELTS" "<strong>If you ever wonder..</strong>" "The International English Language Testing System (IELTS) is one among many great feats every aspiring migrant gets to hurdle with." "03 May 2016"
+                , Blog 2 "Expat tips to save money" "There's not enough money at the end of the time." "ASdasd asdas dasd asd asdasd as d<h4>dasdasdsad</h4>" "04 June 2016"
                 ]
                 (parseLocation location)
 
