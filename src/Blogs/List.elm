@@ -1,7 +1,7 @@
 module Blogs.List exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (style, href)
+import Html.Attributes exposing (style, href, class)
 import Blogs.Messages exposing (Msg(..))
 import Blogs.Models exposing (Blog)
 
@@ -23,8 +23,8 @@ cell el children =
 
 view : List Blog -> Html Msg
 view blogs =
-    div []
-        [ linksView blogs
+    div [ class "container" ]
+        [ subDisplayView blogs
         ]
 
 
@@ -50,6 +50,14 @@ blogView blog =
         , cell td [ text blog.published ]
         ]
 
+
+subDisplayView : List Blog -> Html Msg
+subDisplayView blogs =
+    let
+        latestTwoBlogs = List.take 2 blogs
+    in
+        div [ class "row" ]
+            [ List.map  div [ class "col-sm-6" ] [ blogSubDisplay ] ]
 
 linksView : List Blog -> Html Msg
 linksView blogs =
