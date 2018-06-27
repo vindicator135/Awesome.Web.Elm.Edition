@@ -55,9 +55,18 @@ subDisplayView : List Blog -> Html Msg
 subDisplayView blogs =
     let
         latestTwoBlogs = List.take 2 blogs
+
+        blogSubDisplay blog =
+            div 
+                [ class "col-sm-6" ] 
+                [ div [ class "row", style [("height", "250px"), ("border", "1px solid rgba(0,0,0,.125)"), ("border-radius",".25rem")] ] 
+                      [ div [ class "col-sm-8" ] [ text "Blog details" ]
+                      , div [ class "col-sm-4" ] [ text "Blog image" ]
+                      ] 
+                ]
     in
         div [ class "row" ]
-            [ List.map  div [ class "col-sm-6" ] [ blogSubDisplay ] ]
+            <| List.map blogSubDisplay blogs
 
 linksView : List Blog -> Html Msg
 linksView blogs =
