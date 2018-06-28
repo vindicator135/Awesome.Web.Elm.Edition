@@ -59,14 +59,14 @@ subDisplayView blogs =
         blogSubDisplay blog =
             div 
                 [ class "col-sm-6" ] 
-                [ div [ class "row", style [("height", "250px"), ("border", "1px solid rgba(0,0,0,.125)"), ("border-radius",".25rem")] ] 
-                      [ div [ class "col-sm-8" ] [ text "Blog details" ]
-                      , div [ class "col-sm-4" ] [ text "Blog image" ]
+                [ div [ class "card flex-md-row mb-4 box-shadow", style [("height","250px")] ] 
+                      [ div [ class "col-sm-8" ] [ h3 [] [ linkedText ("#/blogs/" ++ (toString blog.blogId)) blog.title ] ]
+                      , div [ class "col-sm-4", style [ ("background","green") ] ] [ text "Blog image" ]
                       ] 
                 ]
     in
         div [ class "row" ]
-            <| List.map blogSubDisplay blogs
+            <| List.map blogSubDisplay latestTwoBlogs
 
 linksView : List Blog -> Html Msg
 linksView blogs =
