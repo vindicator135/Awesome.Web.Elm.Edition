@@ -60,7 +60,10 @@ subDisplayView blogs =
             div 
                 [ class "col-sm-6" ] 
                 [ div [ class "card flex-md-row mb-4 box-shadow", style [("height","250px")] ] 
-                      [ div [ class "col-sm-8" ] [ h3 [] [ linkedText ("#/blogs/" ++ (toString blog.blogId)) blog.title ] ]
+                      [ div 
+                        [ class "col-sm-8" ] 
+                        [ strong [ class "d-inline-block mb-2 text-primary" ] [ text "World" ] 
+                        , h3 [ ] [ darkLinkedText ("#/blogs/" ++ (toString blog.blogId)) blog.title ]]
                       , div [ class "col-sm-4", style [ ("background","green") ] ] [ text "Blog image" ]
                       ] 
                 ]
@@ -78,14 +81,24 @@ linksView blogs =
         , tbody [] <| List.map linkView <| blogs
         ]
 
-linkedText : String -> String -> Html Msg
-linkedText relativePath displayText =
-    a [ href relativePath ] [ p [] [ text displayText ] ]
+linkedText : String -> String -> String -> Html Msg
+linkedText relativePath className displayText =
+    a [ href relativePath
+      , class className] 
+      [ p [] [ text displayText ] ]
+
+darkLinkedText : String -> String -> Html Msg
+darkLinkedText relativePath displayText =
+    linkedText relativePath "text-dark" displayText
+
+defaultLinkedText : String -> String -> Html Msg
+defaultLinkedText relativePath displayText =
+    linkedText relativePath "" displayText
 
 linkView : Blog -> Html Msg
 linkView blog =
     tr []
         [ cell td [ text <| toString blog.blogId ]
         , cell td [ text <| toString blog.title ]
-        , cell td [ linkedText ("#/blogs/" ++ (toString blog.blogId)) "View" ]
+        , cell td [ defaultLinkedText ("#/blogs/" ++ (toString blog.blogId)) "View" ]
         ]
