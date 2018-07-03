@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (style, href, class)
 import Blogs.Messages exposing (Msg(..))
 import Blogs.Models exposing (Blog)
-
+import Blogs.View exposing (..)
 
 cellStyle : List ( String, String )
 cellStyle =
@@ -62,8 +62,11 @@ subDisplayView blogs =
                 [ div [ class "card flex-md-row mb-4 box-shadow", style [("height","250px")] ] 
                       [ div 
                         [ class "col-sm-8" ] 
-                        [ strong [ class "d-inline-block mb-2 text-primary" ] [ text "World" ] 
-                        , h3 [ ] [ darkLinkedText ("#/blogs/" ++ (toString blog.blogId)) blog.title ]]
+                        [ strong [ class "d-inline-block mb-2 text-primary" ] [ text "Expat" ] 
+                        , h3 [ ] [ darkLinkedText ("#/blogs/" ++ (toString blog.blogId)) blog.title ] 
+                        , div [ class "d-inline-block mb-1 text-muted" ] [ text blog.published ]
+                        , htmlPrelude blog.pretext
+                        ]
                       , div [ class "col-sm-4", style [ ("background","green") ] ] [ text "Blog image" ]
                       ] 
                 ]
