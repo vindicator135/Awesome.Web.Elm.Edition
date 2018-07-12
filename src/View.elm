@@ -13,33 +13,36 @@ import Blogs.View exposing (..)
 
 view : Model -> Html Msg
 view model =
-    let 
-        mainContainer = 
+    let
+        mainContainer =
             [ div [ class "container" ]
-                  [ div [ class "row" ]
-                        [ mainContents
-                        , rightContents
-                        ]
-                  ]
+                [ div [ class "row" ]
+                    [ mainContents
+                    , rightContents
+                    ]
+                ]
             ]
 
         mainContents =
-            div [ class "col-sm-8" ]
-                <| case model.route of
-                    BlogListRoute ->
-                        []
-                    
-                    BlogEntryRoute blogId ->
-                        [ Html.map BlogMsg <| Blogs.View.readView (Maybe.withDefault emptyBlog <| List.head <| List.filter (\blog -> blog.blogId == blogId) model.blogs)
-                        ]    
+            case model.route of
+                BlogListRoute ->
+                    div [ class "col-sm-8" ] []
 
-                    NotFoundRoute ->
-                        [ text "Route not defined"]
-        
+                BlogEntryRoute blogId ->
+                    div [ class "col-sm-8" ]
+                        [ Html.map BlogMsg <|
+                            Blogs.View.readView <|
+                                Maybe.withDefault emptyBlog <|
+                                    List.head <|
+                                        List.filter (\blog -> blog.blogId == blogId) model.blogs
+                        ]
+
+                NotFoundRoute ->
+                    div [ class "col-sm-8" ] [ text "Route not defined" ]
+
         rightContents =
             div [ class "col-sm-4" ]
                 [ text "Right content" ]
     in
         div []
             ((Html.map BlogMsg <| Blogs.List.view model.blogs) :: mainContainer)
-            

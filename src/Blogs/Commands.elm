@@ -19,8 +19,9 @@ blogsDecoder =
 
 blogDecoder : Json.Decode.Decoder Blog
 blogDecoder =
-    Json.Decode.map5 Blog
+    Json.Decode.map6 Blog
         (Json.Decode.field "blogId" Json.Decode.int)
+        (Json.Decode.field "pretitle" Json.Decode.string)
         (Json.Decode.field "title" Json.Decode.string)
         (Json.Decode.field "pretext" Json.Decode.string)
         (Json.Decode.field "content" Json.Decode.string)

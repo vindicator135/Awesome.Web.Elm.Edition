@@ -1,7 +1,7 @@
 module Blogs.View exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (property)
+import Html.Attributes exposing (property, class)
 import Json.Encode exposing (string)
 import Blogs.Models exposing (Blog)
 import Blogs.Messages exposing (..)
@@ -10,29 +10,43 @@ import Blogs.Messages exposing (..)
 readView : Blog -> Html Msg
 readView blog =
     div []
-        [ header blog.title blog.published
+        [ pretitle blog.pretitle
+        , header blog.pretitle blog.title blog.published
         , htmlPrelude blog.pretext
         , htmlBody blog.content
         ]
+        
 
 
-header : String -> String -> Html Msg
-header title published =
-    div []
+
+-- <h3 class="pb-3 mb-4 font-italic border-bottom">
+--             From the Firehose
+--           </h3>
+-- <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+
+
+pretitle : String -> Html Msg
+pretitle pretitle =
+    h3 [ class "pb-3 mb-4 font-italic border-bottom" ] [ text pretitle ]
+
+
+header : String -> String -> String -> Html Msg
+header pretitle title published =
+    div [ class "blog-post" ]
         [ h1 [] [ text title ]
-        , h2 [] [ text published ]
+        , p [ class "blog-post-meta" ] [ text published ]
         ]
 
+
 prelude : String -> Html Msg
-prelude pretext = 
+prelude pretext =
     div []
         [ p [] [ text pretext ] ]
 
 
-htmlPrelude : String  -> Html Msg
+htmlPrelude : String -> Html Msg
 htmlPrelude prelude =
     div [ property "innerHTML" <| Json.Encode.string prelude ] []
-
 
 
 htmlBody : String -> Html Msg
