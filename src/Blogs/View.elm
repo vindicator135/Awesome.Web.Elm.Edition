@@ -1,21 +1,30 @@
 module Blogs.View exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (property, class)
+import Html.Attributes exposing (property, class, style)
 import Json.Encode exposing (string)
-import Blogs.Models exposing (Blog)
+import Blogs.Models exposing (Blog, emptyBlog)
 import Blogs.Messages exposing (..)
 
 
-readView : Blog -> Html Msg
+readView : Blog -> List (Html Msg)
 readView blog =
-    div []
-        [ pretitle blog.pretitle
-        , header blog.pretitle blog.title blog.published
-        , htmlPrelude blog.pretext
-        , htmlBody blog.content
-        ]
+    [ pretitle blog.pretitle
+    , header blog.pretitle blog.title blog.published
+    , htmlPrelude blog.pretext
+    , hr [] []
+    , htmlBody blog.content
+    ]
         
+
+listReadView : Int -> List Blog -> Html Msg
+listReadView blogId blogs =
+    let 
+        firstEntry = 
+            Maybe.withDefault emptyBlog <| List.head <| List.filter (\b -> b.blogId == blogId) blogs 
+    in
+    div []
+        (readView firstEntry) 
 
 
 
@@ -34,7 +43,7 @@ header : String -> String -> String -> Html Msg
 header pretitle title published =
     div [ class "blog-post" ]
         [ h1 [] [ text title ]
-        , p [ class "blog-post-meta" ] [ text published ]
+        , p [ style [( "color","#999" )] ] [ text published ]
         ]
 
 

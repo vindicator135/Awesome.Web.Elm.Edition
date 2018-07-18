@@ -31,10 +31,8 @@ view model =
                 BlogEntryRoute blogId ->
                     div [ class "col-sm-8" ]
                         [ Html.map BlogMsg <|
-                            Blogs.View.readView <|
-                                Maybe.withDefault emptyBlog <|
-                                    List.head <|
-                                        List.filter (\blog -> blog.blogId == blogId) model.blogs
+                            Blogs.View.listReadView blogId <|
+                                List.sortBy (\blog -> blog.blogId) model.blogs
                         ]
 
                 NotFoundRoute ->
