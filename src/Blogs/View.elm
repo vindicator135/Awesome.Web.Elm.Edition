@@ -7,24 +7,24 @@ import Blogs.Models exposing (Blog, emptyBlog)
 import Blogs.Messages exposing (..)
 
 
-readView : Blog -> List (Html Msg)
+readView : Blog -> Html Msg
 readView blog =
-    [ pretitle blog.pretitle
-    , header blog.pretitle blog.title blog.published
-    , htmlPrelude blog.pretext
-    , hr [] []
-    , htmlBody blog.content
-    ]
-        
+    div []
+        [ pretitle blog.pretitle
+        , header blog.title blog.published
+        , htmlPrelude blog.precontent
+        , hr [] []
+        , htmlBody blog.content
+        ]
+
 
 listReadView : Int -> List Blog -> Html Msg
 listReadView blogId blogs =
-    let 
-        firstEntry = 
-            Maybe.withDefault emptyBlog <| List.head <| List.filter (\b -> b.blogId == blogId) blogs 
+    let
+        firstEntry =
+            Maybe.withDefault emptyBlog <| List.head <| List.filter (\b -> b.blogId == blogId) blogs
     in
-    div []
-        (readView firstEntry) 
+        readView firstEntry
 
 
 
@@ -39,11 +39,11 @@ pretitle pretitle =
     h3 [ class "pb-3 mb-4 font-italic border-bottom" ] [ text pretitle ]
 
 
-header : String -> String -> String -> Html Msg
-header pretitle title published =
+header : String -> String -> Html Msg
+header title published =
     div [ class "blog-post" ]
         [ h1 [] [ text title ]
-        , p [ style [( "color","#999" )] ] [ text published ]
+        , p [ style [ ( "color", "#999" ) ] ] [ text published ]
         ]
 
 

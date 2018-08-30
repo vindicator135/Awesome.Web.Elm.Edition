@@ -13,66 +13,41 @@ import Blogs.View exposing (..)
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ (headerView model)
-        , (mainContentsView model)
-        , footerView
-        ]
-
-
-mainContentsView : Model -> Html Msg
-mainContentsView model =
     let
-        centerContents =
-            case model.route of
-                BlogListRoute ->
-                    div [ class "col-sm-8" ] []
-
-                BlogEntryRoute blogId ->
-                    div [ class "col-sm-8" ]
-                        [ Html.map BlogMsg <|
-                            Blogs.View.listReadView blogId <|
-                                List.sortBy (\blog -> blog.blogId) model.blogs
-                        ]
-
-                NotFoundRoute ->
-                    div [ class "col-sm-8" ] [ text "Route not defined" ]
-
-        rightContents =
-            div [ class "col-sm-4" ]
-                [ text "Right content" ]
-    in
-        div [ class "container" ]
-            [ div [ class "row" ]
-                [ centerContents
-                , rightContents
-                ]
-            ]
-
-
-headerView : Model -> Html Msg
-headerView model =
-    let
-        title =
+        section contents =
             div [ class "container" ]
                 [ div [ class "row" ]
-                    [ div [ class "col-sm-6", style [ ( "background", "url(\"\\images\\custom\\main-logo-300x102.png\")" ),( "height", "102px" ) ] ]
-                        []
-                    , div [ class "col-sm-6" ]
-                        []
-                    ]
+                    contents
                 ]
 
-        subHeader blogs =
-            Html.map BlogMsg <| Blogs.List.view blogs
+        banner =
+            [ div [ class "logo-image-300w-102h mt-3 mb-3" ] [] ]
+
+        header blogs =
+            [ Html.map BlogMsg <| Blogs.List.view blogs ]
+
+        body route blogs =
+            case route of
+                BlogListRoute ->
+                    []
+
+                BlogEntryRoute blogId ->
+                    [ List.filter (\blog -> blog.blogId == blogId) blogs
+                        |> List.head
+                        |> Maybe.withDefault emptyBlog
+                        |> Blogs.View.readView
+                        |> Html.map BlogMsg
+                    ]
+
+                NotFoundRoute ->
+                    [ text "Route not defined" ]
+
+        footer =
+            []
     in
         div []
-            [ title
-            , subHeader model.blogs
+            [ section <| banner
+            , section <| header model.blogs
+            , section <| [ div [ class "col-sm-12" ] <| body model.route model.blogs ]
+            , section <| footer
             ]
-
-
-footerView : Html Msg
-footerView =
-    div []
-        []

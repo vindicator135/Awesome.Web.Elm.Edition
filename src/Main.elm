@@ -1,10 +1,12 @@
 module Main exposing (..)
 
+import Html exposing (..)
 import Models exposing (init, Model)
 import View exposing (view)
 import Update exposing (update)
-import Messages exposing (Msg(OnLocationChange))
+import Messages exposing (..)
 import Navigation exposing (Location)
+import Routing
 
 
 main : Program Never Model Msg
