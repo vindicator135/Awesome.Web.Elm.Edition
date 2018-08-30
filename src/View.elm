@@ -13,17 +13,17 @@ import Blogs.View exposing (..)
 
 view : Model -> Html Msg
 view model =
-    let
-        mainContainer =
-            [ div [ class "container" ]
-                [ div [ class "row" ]
-                    [ mainContents
-                    , rightContents
-                    ]
-                ]
-            ]
+    div []
+        [ (headerView model)
+        , (mainContentsView model)
+        , footerView
+        ]
 
-        mainContents =
+
+mainContentsView : Model -> Html Msg
+mainContentsView model =
+    let
+        centerContents =
             case model.route of
                 BlogListRoute ->
                     div [ class "col-sm-8" ] []
@@ -42,5 +42,37 @@ view model =
             div [ class "col-sm-4" ]
                 [ text "Right content" ]
     in
+        div [ class "container" ]
+            [ div [ class "row" ]
+                [ centerContents
+                , rightContents
+                ]
+            ]
+
+
+headerView : Model -> Html Msg
+headerView model =
+    let
+        title =
+            div [ class "container" ]
+                [ div [ class "row" ]
+                    [ div [ class "col-sm-6", style [ ( "background", "url(\"\\images\\custom\\main-logo-300x102.png\")" ),( "height", "102px" ) ] ]
+                        []
+                    , div [ class "col-sm-6" ]
+                        []
+                    ]
+                ]
+
+        subHeader blogs =
+            Html.map BlogMsg <| Blogs.List.view blogs
+    in
         div []
-            ((Html.map BlogMsg <| Blogs.List.view model.blogs) :: mainContainer)
+            [ title
+            , subHeader model.blogs
+            ]
+
+
+footerView : Html Msg
+footerView =
+    div []
+        []

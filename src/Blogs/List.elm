@@ -6,6 +6,7 @@ import Blogs.Messages exposing (Msg(..))
 import Blogs.Models exposing (Blog)
 import Blogs.View exposing (..)
 
+
 cellStyle : List ( String, String )
 cellStyle =
     [ ( "textAlign", "left" )
@@ -54,25 +55,27 @@ blogView blog =
 subDisplayView : List Blog -> Html Msg
 subDisplayView blogs =
     let
-        latestTwoBlogs = List.take 2 blogs
+        latestTwoBlogs =
+            List.take 2 blogs
 
         blogSubDisplay blog =
-            div 
-                [ class "col-sm-6" ] 
-                [ div [ class "card flex-md-row mb-4 box-shadow", style [("height","250px")] ] 
-                      [ div 
-                        [ class "col-sm-8" ] 
-                        [ strong [ class "d-inline-block mb-2 text-primary" ] [ text "Expat" ] 
-                        , h3 [ ] [ darkLinkedText ("#/blogs/" ++ (toString blog.blogId)) blog.title ] 
+            div
+                [ class "col-sm-6" ]
+                [ div [ class "card flex-md-row mb-4 box-shadow", style [ ( "height", "250px" ) ] ]
+                    [ div
+                        [ class "col-sm-8" ]
+                        [ strong [ class "d-inline-block mb-2 text-primary" ] [ text "Expat" ]
+                        , h3 [] [ darkLinkedText ("#/blogs/" ++ (toString blog.blogId)) blog.title ]
                         , div [ class "d-inline-block mb-1 text-muted" ] [ text blog.published ]
                         , htmlPrelude blog.pretext
                         ]
-                      , div [ class "col-sm-4", style [ ("background","green") ] ] [ text "Blog image" ]
-                      ] 
+                    , div [ class "col-sm-4", style [ ( "background", "green" ) ] ] [ text "Blog image" ]
+                    ]
                 ]
     in
-        div [ class "row" ]
-            <| List.map blogSubDisplay latestTwoBlogs
+        div [ class "row" ] <|
+            List.map blogSubDisplay latestTwoBlogs
+
 
 linksView : List Blog -> Html Msg
 linksView blogs =
@@ -80,23 +83,30 @@ linksView blogs =
         [ thead []
             [ cell th [ text "ID" ]
             , cell th [ text "Title" ]
-            , cell th [ text "" ] ]
+            , cell th [ text "" ]
+            ]
         , tbody [] <| List.map linkView <| blogs
         ]
 
+
 linkedText : String -> String -> String -> Html Msg
 linkedText relativePath className displayText =
-    a [ href relativePath
-      , class className] 
-      [ p [] [ text displayText ] ]
+    a
+        [ href relativePath
+        , class className
+        ]
+        [ p [] [ text displayText ] ]
+
 
 darkLinkedText : String -> String -> Html Msg
 darkLinkedText relativePath displayText =
     linkedText relativePath "text-dark" displayText
 
+
 defaultLinkedText : String -> String -> Html Msg
 defaultLinkedText relativePath displayText =
     linkedText relativePath "" displayText
+
 
 linkView : Blog -> Html Msg
 linkView blog =
