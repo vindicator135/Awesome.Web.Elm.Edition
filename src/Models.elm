@@ -1,11 +1,12 @@
 module Models exposing (..)
 
-import Messages exposing (Msg(BlogMsg))
+import Messages exposing (Msg(..))
 import Blogs.Models exposing (Blog)
 import Blogs.Commands
-import Navigation exposing (Location)
 import Routing exposing (..)
 
+import Url exposing (Url)
+import Browser.Navigation exposing (Key)
 
 type alias Model =
     { blogs : List Blog
@@ -13,8 +14,8 @@ type alias Model =
     }
 
 
-init : Location -> ( Model, Cmd Msg )
-init location =
+init: Url -> Key -> ( Model, Cmd Msg )
+init url key =
     let
         model =
             Model
@@ -22,7 +23,7 @@ init location =
                 , Blog 2 "From Down Under" "Expat tips to save money" "There's not enough money at the end of the time." "ASdasd asdas dasd asd asdasd as d<h4>dasdasdsad</h4>" "04 June 2016"
                 , Blog 3 "From Down Under" "Tips to save some" "More more more" "Ewewewewe welkjkljadsa asd asdasdas dasdas d<h4>dasdasdsad</h4>" "04 June 2016"
                 ]
-                (parseLocation location)
+                (parseUrl url)
 
         cmds =
             Cmd.batch

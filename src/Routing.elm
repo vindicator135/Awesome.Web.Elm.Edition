@@ -1,7 +1,7 @@
 module Routing exposing (..)
 
-import Navigation exposing (Location)
-import UrlParser exposing (..)
+import Url.Parser as Parser exposing (map, (</>), Parser, oneOf, s, string, int, top)
+import Url exposing (Url)
 
 
 type Route
@@ -18,10 +18,9 @@ matchers =
         , map BlogListRoute (s "blogs")
         ]
 
-
-parseLocation : Location -> Route
-parseLocation location =
-    case (parseHash matchers location) of
+parseUrl : Url -> Route
+parseUrl url =
+    case (Parser.parse matchers url) of
         Just route ->
             route
 

@@ -1,6 +1,6 @@
 module Update exposing (..)
 
-import Messages exposing (Msg(NoOp, BlogMsg, OnLocationChange))
+import Messages exposing (Msg(..))
 import Models exposing (Model)
 import Routing exposing (..)
 
@@ -14,9 +14,9 @@ update msg model =
         BlogMsg _ ->
             ( model, Cmd.none )
 
-        OnLocationChange location ->
+        OnLocationChange url ->
             let
-                newRoute = parseLocation location
+                newRoute = parseUrl url
             in
                 ( { model | route = newRoute } , Cmd.none )
 

@@ -7,10 +7,10 @@ import Blogs.Models exposing (Blog)
 import Blogs.View exposing (..)
 
 
-cellStyle : List ( String, String )
+cellStyle : List ( Attribute msg )
 cellStyle =
-    [ ( "textAlign", "left" )
-    , ( "padding", "10px" )
+    [ style "textAlign" "left"
+    , style "padding" "10px" 
     ]
 
 
@@ -19,7 +19,7 @@ cell :
     -> a
     -> b -- make a cell (th or td) with the pre-set style attribute
 cell el children =
-    el [ style cellStyle ] children
+    el cellStyle children
 
 
 view : List Blog -> Html Msg
@@ -45,7 +45,7 @@ blogsListView blogs =
 blogView : Blog -> Html Msg
 blogView blog =
     tr []
-        [ cell td [ text <| toString blog.blogId ]
+        [ cell td [ text <| String.fromInt blog.blogId ]
         , cell td [ text blog.title ]
         , cell td [ text blog.content ]
         , cell td [ text blog.published ]
@@ -61,15 +61,15 @@ subDisplayView blogs =
         blogSubDisplay blog =
             div
                 [ class "col-sm-6" ]
-                [ div [ class "card flex-md-row mb-4 box-shadow", style [ ( "height", "250px" ) ] ]
+                [ div [ class "card flex-md-row mb-4 box-shadow", style  "height" "250px" ]
                     [ div
                         [ class "col-sm-8" ]
                         [ strong [ class "d-inline-block mb-2 text-primary" ] [ text "Expat" ]
-                        , h3 [] [ darkLinkedText ("#/blogs/" ++ (toString blog.blogId)) blog.title ]
+                        , h3 [] [ darkLinkedText ("#/blogs/" ++ (String.fromInt blog.blogId)) blog.title ]
                         , div [ class "d-inline-block mb-1 text-muted" ] [ text blog.published ]
                         , htmlPrelude blog.pretext
                         ]
-                    , div [ class "col-sm-4", style [ ( "background", "green" ) ] ] [ text "Blog image" ]
+                    , div [ class "col-sm-4", style "background" "green" ] [ text "Blog image" ]
                     ]
                 ]
     in
@@ -111,7 +111,7 @@ defaultLinkedText relativePath displayText =
 linkView : Blog -> Html Msg
 linkView blog =
     tr []
-        [ cell td [ text <| toString blog.blogId ]
-        , cell td [ text <| toString blog.title ]
-        , cell td [ defaultLinkedText ("#/blogs/" ++ (toString blog.blogId)) "View" ]
+        [ cell td [ text <| String.fromInt blog.blogId ]
+        , cell td [ text blog.title ]
+        , cell td [ defaultLinkedText ("#/blogs/" ++ (String.fromInt blog.blogId)) "View" ]
         ]

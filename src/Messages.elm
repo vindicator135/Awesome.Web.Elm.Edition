@@ -1,9 +1,11 @@
 module Messages exposing (..)
 
 import Blogs.Messages
-import Navigation exposing (Location)
+import Url exposing (Url)
+import Browser exposing (UrlRequest)
 
 type Msg
     = NoOp
     | BlogMsg Blogs.Messages.Msg
-    | OnLocationChange Location
+    | OnLocationChange Url
+    | OnUrlRequest UrlRequest

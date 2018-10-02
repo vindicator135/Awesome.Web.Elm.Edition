@@ -35,15 +35,15 @@ listReadView blogId blogs =
 
 
 pretitle : String -> Html Msg
-pretitle pretitle =
-    h3 [ class "pb-3 mb-4 font-italic border-bottom" ] [ text pretitle ]
+pretitle title =
+    h3 [ class "pb-3 mb-4 font-italic border-bottom" ] [ text title ]
 
 
 header : String -> String -> String -> Html Msg
-header pretitle title published =
+header _ title published =
     div [ class "blog-post" ]
         [ h1 [] [ text title ]
-        , p [ style [( "color","#999" )] ] [ text published ]
+        , p [ style "color" "#999" ] [ text published ]
         ]
 
 
@@ -54,8 +54,8 @@ prelude pretext =
 
 
 htmlPrelude : String -> Html Msg
-htmlPrelude prelude =
-    div [ property "innerHTML" <| Json.Encode.string prelude ] []
+htmlPrelude preludeText =
+    div [ property "innerHTML" <| Json.Encode.string preludeText ] []
 
 
 htmlBody : String -> Html Msg
