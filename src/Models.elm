@@ -11,6 +11,7 @@ import Browser.Navigation exposing (Key)
 type alias Model =
     { blogs : List Blog
     , route : Route
+    , key : Key
     }
 
 
@@ -24,6 +25,7 @@ init url key =
                 , Blog 3 "From Down Under" "Tips to save some" "More more more" "Ewewewewe welkjkljadsa asd asdasdas dasdas d<h4>dasdasdsad</h4>" "04 June 2016"
                 ]
                 (parseUrl url)
+                key
 
         cmds =
             Cmd.batch

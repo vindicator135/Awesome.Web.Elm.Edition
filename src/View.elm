@@ -42,6 +42,8 @@ mainContentsView model =
                 NotFoundRoute ->
                     div [ class "col-sm-8" ] [ text "Route not defined" ]
 
+        x = Debug.log "mainContentsView" model
+
         rightContents =
             div [ class "col-sm-4" ]
                 [ text "Right content" ]
