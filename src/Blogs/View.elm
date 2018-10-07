@@ -11,7 +11,7 @@ readView : Blog -> Html Msg
 readView blog =
     div []
         [ pretitle blog.pretitle
-        , header blog.title blog.published
+        , header "" blog.title blog.published
         , htmlPrelude blog.precontent
         , hr [] []
         , htmlBody blog.content
@@ -39,19 +39,11 @@ pretitle title =
     h3 [ class "pb-3 mb-4 font-italic border-bottom" ] [ text title ]
 
 
-<<<<<<< HEAD
 header : String -> String -> String -> Html Msg
 header _ title published =
     div [ class "blog-post" ]
         [ h1 [] [ text title ]
         , p [ style "color" "#999" ] [ text published ]
-=======
-header : String -> String -> Html Msg
-header title published =
-    div [ class "blog-post" ]
-        [ h1 [] [ text title ]
-        , p [ style [ ( "color", "#999" ) ] ] [ text published ]
->>>>>>> a6ba63c99b2155744db643c2466a1b0065e526c2
         ]
 
 
