@@ -19,13 +19,14 @@ blogsDecoder =
 
 blogDecoder : Json.Decode.Decoder Blog
 blogDecoder =
-    Json.Decode.map6 Blog
+    Json.Decode.map7 Blog
         (Json.Decode.field "blogId" Json.Decode.int)
         (Json.Decode.field "pretitle" Json.Decode.string)
         (Json.Decode.field "title" Json.Decode.string)
         (Json.Decode.field "pretext" Json.Decode.string)
-        (Json.Decode.field "content" Json.Decode.string)
         (Json.Decode.field "published" Json.Decode.string)
+        (Json.Decode.field "precontent" Json.Decode.string)
+        (Json.Decode.field "content" Json.Decode.string)
 
 
 fetchAll : Cmd Msg

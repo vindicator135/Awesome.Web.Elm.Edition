@@ -15,6 +15,7 @@ import Browser exposing (Document)
 
 view : Model -> Document Msg
 view model =
+<<<<<<< HEAD
     { title = "A Journey To Awesome"
     , body = [ (headerView model)
              , (mainContentsView model)
@@ -22,24 +23,36 @@ view model =
              ]
     }
         
-
-
-mainContentsView : Model -> Html Msg
-mainContentsView model =
+=======
     let
-        centerContents =
-            case model.route of
+        section contents =
+            div [ class "container" ]
+                [ div [ class "row" ]
+                    contents
+                ]
+>>>>>>> a6ba63c99b2155744db643c2466a1b0065e526c2
+
+        banner =
+            [ div [ class "logo-image-300w-102h mt-3 mb-3" ] [] ]
+
+        header blogs =
+            [ Html.map BlogMsg <| Blogs.List.view blogs ]
+
+        body route blogs =
+            case route of
                 BlogListRoute ->
-                    div [ class "col-sm-8" ] []
+                    []
 
                 BlogEntryRoute blogId ->
-                    div [ class "col-sm-8" ]
-                        [ Html.map BlogMsg <|
-                            Blogs.View.listReadView blogId <|
-                                List.sortBy (\blog -> blog.blogId) model.blogs
-                        ]
+                    [ List.filter (\blog -> blog.blogId == blogId) blogs
+                        |> List.head
+                        |> Maybe.withDefault emptyBlog
+                        |> Blogs.View.readView
+                        |> Html.map BlogMsg
+                    ]
 
                 NotFoundRoute ->
+<<<<<<< HEAD
                     div [ class "col-sm-8" ] [ text "Route not defined" ]
 
         x = Debug.log "mainContentsView" model
@@ -70,17 +83,16 @@ headerView model =
                         []
                     ]
                 ]
+=======
+                    [ text "Route not defined" ]
+>>>>>>> a6ba63c99b2155744db643c2466a1b0065e526c2
 
-        subHeader blogs =
-            Html.map BlogMsg <| Blogs.List.view blogs
+        footer =
+            []
     in
         div []
-            [ title
-            , subHeader model.blogs
+            [ section <| banner
+            , section <| header model.blogs
+            , section <| [ div [ class "col-sm-12" ] <| body model.route model.blogs ]
+            , section <| footer
             ]
-
-
-footerView : Html Msg
-footerView =
-    div []
-        []
