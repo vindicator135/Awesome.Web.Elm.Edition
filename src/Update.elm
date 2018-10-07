@@ -19,9 +19,11 @@ update msg model =
 
         OnLocationChange url ->
             let
-                newRoute = parseUrl url
+                newUrl = Debug.log "FromFragment URL result" <| fromFragment url
+                newRoute =
+                    Debug.log "Result of parseUrl" (parseUrl <| newUrl)
             in
-                ( Debug.log "OnLocationChange" { model | route = newRoute } , Cmd.none )
+                ( Debug.log "OnLocationChange" { model | route = newRoute }, Cmd.none )
 
         OnUrlRequest urlRequest ->
             case urlRequest of
@@ -37,22 +39,26 @@ update msg model =
                             -- `case url.fragment of` expression this comment
                             -- is inside would be unnecessary.
                             let
-                                internalUrl = Debug.log "Received invalid internalUrl fragment" url                              
+                                internalUrl =
+                                    Debug.log "Received invalid internalUrl fragment" url
                             in
-                            ( model, Cmd.none )
+                                ( model, Cmd.none )
 
                         Just _ ->
                             let
-                                internalUrl = Debug.log "Received valid internalUrl fragment" url                              
-                            in
-                            ( model, Nav.pushUrl model.key (Url.toString url))
-                            -- ( model
-                            -- , Nav.pushUrl (Session.navKey (toSession model)) (Url.toString url)
-                            -- )
+                                internalUrl =
+                                    Debug.log "Received valid internalUrl fragment" url
 
+                                s =
+                                    Debug.log "Url string" (Url.toString url)
+                            in
+                                ( model, Nav.pushUrl model.key (Url.toString url) )
+
+                -- ( model
+                -- , Nav.pushUrl (Session.navKey (toSession model)) (Url.toString url)
+                -- )
                 Browser.External href ->
                     -- ( model
                     -- , Nav.load href
                     -- )
                     ( Debug.log "Received external OnUrlRequest" model, Cmd.none )
-

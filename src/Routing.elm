@@ -13,10 +13,10 @@ type Route
 matchers : Parser (Route -> a) a
 matchers =
     oneOf
-        [ map BlogListRoute top
-        , map BlogEntryRoute (s "blogs" </> int)
+        [ map BlogEntryRoute (s "blogs" </> int)
         , map BlogListRoute (s "blogs")
         ]
+
 
 parseUrl : Url -> Route
 parseUrl url =
@@ -26,3 +26,10 @@ parseUrl url =
 
         Nothing ->
             NotFoundRoute
+
+fromFragment : Url -> Url
+fromFragment url =
+    { url | path = (Maybe.withDefault "" url.fragment)
+          , fragment = Nothing }
+
+

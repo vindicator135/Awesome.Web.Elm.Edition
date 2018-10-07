@@ -43,7 +43,7 @@ init url key =
                         ""
                        "Ewewewewe welkjkljadsa asd asdasdas dasdas d<h4>dasdasdsad</h4>"
                 ]
-                (parseUrl url)
+                (parseUrl <| fromFragment url)
                 key
 
         cmds =
