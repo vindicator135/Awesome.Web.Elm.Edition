@@ -47,7 +47,7 @@ blogView blog =
     tr []
         [ cell td [ text <| String.fromInt blog.blogId ]
         , cell td [ text blog.title ]
-        , cell td [ text blog.content ]
+        , cell td [ text blog.pretext ]
         , cell td [ text blog.published ]
         ]
 

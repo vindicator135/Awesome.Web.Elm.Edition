@@ -24,26 +24,23 @@ view model =
 mainContentsView : Model -> Html Msg
 mainContentsView model =
     let
-        banner =
-            [ div [ class "logo-image-300w-102h mt-3 mb-3" ] [] ]
-
         header blogs =
             [ Html.map BlogMsg <| Blogs.List.view blogs ]
 
         title =
-            div [ class "container" ]
-                [ div [ class "row" ]
-                    [ div
-                        [ class "col-sm-6"
-                        , style "background" "url(\"\\images\\custom\\main-logo-300x102.png\")"
-                        , style "height" "102px"
+            [ div [ class "container" ]
+                  [ div [ class "row" ]
+                        [ div [ class "col-sm-6" ]
+                              [ div [ class "logo-image-300w-102h mt-3 mb-3" ] 
+                                    [] 
+                              ]
+                        , div [ class "col-sm-6" ]
+                              [ ]
                         ]
-                        []
-                    , div [ class "col-sm-6" ]
-                        []
-                    ]
-                ]
+                  ]
+            ]
 
+        body: Route -> List Blog -> List (Html Msg)
         body route blogs =
             case route of
                 BlogListRoute ->
@@ -64,7 +61,7 @@ mainContentsView model =
             []
     in
         div []
-            [ section [] <| banner
+            [ section [] <| title
             , section [] <| header model.blogs
             , section [] <| [ div [ class "col-sm-12" ] <| body model.route model.blogs ]
             , section [] <| footer

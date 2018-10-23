@@ -1,5 +1,7 @@
 module Blogs.Models exposing (..)
 
+import Html exposing (Html,div)
+
 
 type alias Blog =
     { blogId : Int
@@ -7,11 +9,9 @@ type alias Blog =
     , title : String
     , pretext : String
     , published : String
-    , precontent : String
-    , content : String
     }
 
 
-emptyBlog : Blog
+emptyBlog : Blog 
 emptyBlog =
-    Blog 0 "no pretitle" "no title" "no pretext" "never published" "no precontent" "no content"
+    Blog 0 "no pretitle" "no title" "no pretext" "never published"
