@@ -1,11 +1,12 @@
 module Blogs.List exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (style, href, class)
+import Html.Attributes exposing (style, href, class, src)
 import Blogs.Messages exposing (Msg(..))
 import Blogs.Models exposing (Blog)
 import Blogs.View exposing (..)
 
+import Blogs.Resources exposing (getListViewImage)
 
 cellStyle : List ( Attribute msg )
 cellStyle =
@@ -69,7 +70,11 @@ subDisplayView blogs =
                         , div [ class "d-inline-block mb-1 text-muted" ] [ text blog.published ]
                         , htmlPrelude blog.pretext
                         ]
-                    , div [ class "col-sm-4", style "background" "green" ] [ text "Blog image" ]
+                    , div [ class "blog-image" ] 
+                          [ img [ class "img-fluid"
+                                , src <| getListViewImage blog.blogId] 
+                                [] 
+                          ]
                     ]
                 ]
     in
