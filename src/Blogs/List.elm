@@ -5,13 +5,13 @@ import Html.Attributes exposing (style, href, class, src)
 import Blogs.Messages exposing (Msg(..))
 import Blogs.Models exposing (Blog)
 import Blogs.View exposing (..)
-
 import Blogs.Resources exposing (getListViewImage)
 
-cellStyle : List ( Attribute msg )
+
+cellStyle : List (Attribute msg)
 cellStyle =
     [ style "textAlign" "left"
-    , style "padding" "10px" 
+    , style "padding" "10px"
     ]
 
 
@@ -62,7 +62,7 @@ subDisplayView blogs =
         blogSubDisplay blog =
             div
                 [ class "col-sm-6" ]
-                [ div [ class "card flex-md-row mb-4 box-shadow", style  "height" "250px" ]
+                [ div [ class "card flex-md-row mb-4 box-shadow", style "height" "250px" ]
                     [ div
                         [ class "col-sm-8" ]
                         [ strong [ class "d-inline-block mb-2 text-primary" ] [ text "Expat" ]
@@ -70,11 +70,13 @@ subDisplayView blogs =
                         , div [ class "d-inline-block mb-1 text-muted" ] [ text blog.published ]
                         , htmlPrelude blog.pretext
                         ]
-                    , div [ class "blog-image" ] 
-                          [ img [ class "img-fluid"
-                                , src <| getListViewImage blog.blogId] 
-                                [] 
-                          ]
+                    , div [ class "blog-image" ]
+                        [ img
+                            [ class "img-fluid"
+                            , src <| getListViewImage blog.blogId
+                            ]
+                            []
+                        ]
                     ]
                 ]
     in

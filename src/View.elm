@@ -29,18 +29,18 @@ mainContentsView model =
 
         title =
             [ div [ class "container" ]
-                  [ div [ class "row" ]
-                        [ div [ class "col-sm-6" ]
-                              [ div [ class "logo-image-300w-102h mt-3 mb-3" ] 
-                                    [] 
-                              ]
-                        , div [ class "col-sm-6" ]
-                              [ ]
+                [ div [ class "row" ]
+                    [ div [ class "col-sm-6" ]
+                        [ div [ class "logo-image-300w-102h mt-3 mb-3" ]
+                            []
                         ]
-                  ]
+                    , div [ class "col-sm-6" ]
+                        []
+                    ]
+                ]
             ]
 
-        body: Route -> List Blog -> List (Html Msg)
+        body : Route -> List Blog -> List (Html Msg)
         body route blogs =
             case route of
                 BlogListRoute ->

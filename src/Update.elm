@@ -19,7 +19,9 @@ update msg model =
 
         OnLocationChange url ->
             let
-                newUrl = Debug.log "FromFragment URL result" <| fromFragment url
+                newUrl =
+                    Debug.log "FromFragment URL result" <| fromFragment url
+
                 newRoute =
                     Debug.log "Result of parseUrl" (parseUrl <| newUrl)
             in

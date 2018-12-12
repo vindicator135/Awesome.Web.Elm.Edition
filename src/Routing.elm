@@ -27,9 +27,10 @@ parseUrl url =
         Nothing ->
             NotFoundRoute
 
+
 fromFragment : Url -> Url
 fromFragment url =
-    { url | path = (Maybe.withDefault "" url.fragment)
-          , fragment = Nothing }
-
-
+    { url
+        | path = (Maybe.withDefault "" url.fragment)
+        , fragment = Nothing
+    }
