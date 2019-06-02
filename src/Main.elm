@@ -1,17 +1,17 @@
 module Main exposing (..)
 
-import Html exposing (..)
-import Models exposing (init, Model)
+import Init exposing (init)
+import Model exposing (Model)
 import View exposing (view)
 import Update exposing (update)
-import Messages exposing (Msg(..))
+import Message exposing (Msg(..))
 import Browser exposing (..)
 
 
 main : Program () Model Msg
 main =
     Browser.application
-        { init = \_ url key -> init (Debug.log "init url" url) key
+        { init = \() url key -> init url key
         , view = view
         , update = update
         , subscriptions = \_ -> Sub.none

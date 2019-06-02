@@ -1,20 +1,20 @@
-module Routing exposing (..)
+module Routing exposing (Route(..), matchers, fromFragment, parseUrl)
 
 import Url.Parser as Parser exposing (map, (</>), Parser, oneOf, s, string, int, top)
 import Url exposing (Url)
 
 
 type Route
-    = BlogListRoute
-    | BlogEntryRoute Int
-    | NotFoundRoute
+    = BlogList
+    | BlogEntry Int
+    | NotFound
 
 
 matchers : Parser (Route -> a) a
 matchers =
     oneOf
-        [ map BlogEntryRoute (s "blogs" </> int)
-        , map BlogListRoute (s "blogs")
+        [ map BlogEntry (s "blogs" </> int)
+        , map BlogList (s "blogs")
         ]
 
 
@@ -25,7 +25,7 @@ parseUrl url =
             route
 
         Nothing ->
-            NotFoundRoute
+            NotFound
 
 
 fromFragment : Url -> Url
