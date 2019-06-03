@@ -4320,6 +4320,24 @@ var author$project$Model$Model = F3(
 		return {blogs: blogs, key: key, pageState: pageState};
 	});
 var author$project$Routing$NotFound = {$: 'NotFound'};
+var elm$core$Maybe$Nothing = {$: 'Nothing'};
+var elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var author$project$Routing$fromFragment = function (url) {
+	return _Utils_update(
+		url,
+		{
+			fragment: elm$core$Maybe$Nothing,
+			path: A2(elm$core$Maybe$withDefault, '', url.fragment)
+		});
+};
 var author$project$Routing$BlogEntry = function (a) {
 	return {$: 'BlogEntry', a: a};
 };
@@ -4407,7 +4425,6 @@ var elm$core$Set$toList = function (_n0) {
 var elm$core$Maybe$Just = function (a) {
 	return {$: 'Just', a: a};
 };
-var elm$core$Maybe$Nothing = {$: 'Nothing'};
 var elm$core$String$toInt = _String_toInt;
 var elm$core$Basics$apL = F2(
 	function (f, x) {
@@ -4664,6 +4681,15 @@ var author$project$Routing$matchers = elm$url$Url$Parser$oneOf(
 			author$project$Routing$BlogList,
 			elm$url$Url$Parser$s('blogs'))
 		]));
+var elm$core$Basics$apR = F2(
+	function (x, f) {
+		return f(x);
+	});
+var elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
 var elm$url$Url$Parser$getFirstMatch = function (states) {
 	getFirstMatch:
 	while (true) {
@@ -5301,7 +5327,11 @@ var elm$url$Url$Parser$parse = F2(
 					elm$core$Basics$identity)));
 	});
 var author$project$Routing$parseUrl = function (url) {
-	var _n0 = A2(elm$url$Url$Parser$parse, author$project$Routing$matchers, url);
+	var _n0 = A3(
+		elm$core$Basics$composeR,
+		author$project$Routing$fromFragment,
+		elm$url$Url$Parser$parse(author$project$Routing$matchers),
+		url);
 	if (_n0.$ === 'Just') {
 		var route = _n0.a;
 		return route;
@@ -5309,6 +5339,7 @@ var author$project$Routing$parseUrl = function (url) {
 		return author$project$Routing$NotFound;
 	}
 };
+var elm$core$Debug$log = _Debug_log;
 var elm$core$Basics$False = {$: 'False'};
 var elm$core$Basics$True = {$: 'True'};
 var elm$core$Result$isOk = function (result) {
@@ -5362,10 +5393,6 @@ var elm$core$Array$compressNodes = F2(
 				continue compressNodes;
 			}
 		}
-	});
-var elm$core$Basics$apR = F2(
-	function (x, f) {
-		return f(x);
 	});
 var elm$core$Tuple$first = function (_n0) {
 	var x = _n0.a;
@@ -5687,6 +5714,7 @@ var author$project$Init$init = F2(
 		}();
 		var pageState = _n0.a;
 		var blogs = _n0.b;
+		var _n2 = A2(elm$core$Debug$log, 'init', url);
 		return _Utils_Tuple2(
 			A3(author$project$Model$Model, key, pageState, blogs),
 			elm$core$Platform$Cmd$none);
@@ -5949,7 +5977,6 @@ var elm$url$Url$fromString = function (str) {
 };
 var elm$browser$Browser$Navigation$load = _Browser_load;
 var elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
-var elm$core$Debug$log = _Debug_log;
 var elm$url$Url$addPort = F2(
 	function (maybePort, starter) {
 		if (maybePort.$ === 'Nothing') {
@@ -6033,13 +6060,1024 @@ var author$project$Update$update = F2(
 				}
 		}
 	});
+var elm$html$Html$a = _VirtualDom_node('a');
 var elm$html$Html$div = _VirtualDom_node('div');
-var author$project$Blogs$View$listBlogs = A2(elm$html$Html$div, _List_Nil, _List_Nil);
-var author$project$Blogs$View$readBlog = function (blogId) {
-	return A2(elm$html$Html$div, _List_Nil, _List_Nil);
-};
+var elm$html$Html$h1 = _VirtualDom_node('h1');
+var elm$html$Html$li = _VirtualDom_node('li');
+var elm$html$Html$section = _VirtualDom_node('section');
+var elm$html$Html$span = _VirtualDom_node('span');
 var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
+var elm$html$Html$ul = _VirtualDom_node('ul');
+var elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var elm$html$Html$Attributes$attribute = elm$virtual_dom$VirtualDom$attribute;
+var elm$json$Json$Encode$string = _Json_wrap;
+var elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
+var elm$html$Html$Attributes$href = function (url) {
+	return A2(
+		elm$html$Html$Attributes$stringProperty,
+		'href',
+		_VirtualDom_noJavaScriptUri(url));
+};
+var author$project$Blogs$View$blogsHeader = A2(
+	elm$html$Html$section,
+	_List_fromArray(
+		[
+			elm$html$Html$Attributes$class('page-title bg-gray')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			elm$html$Html$div,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('container')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$html$Html$div,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$class('row')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('col-md-8 col-sm-12 wow fadeInUp'),
+									A2(elm$html$Html$Attributes$attribute, 'data-wow-duration', '300ms')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$h1,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('black-text')
+										]),
+									_List_fromArray(
+										[
+											elm$html$Html$text('A Journey To Awesome')
+										])),
+									A2(
+									elm$html$Html$span,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('xs-display-none')
+										]),
+									_List_fromArray(
+										[
+											elm$html$Html$text('My thoughts on life, family and everything in between...')
+										])),
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('separator-line margin-three bg-black no-margin-lr sm-margin-top-three sm-margin-bottom-three no-margin-bottom xs-display-none')
+										]),
+									_List_Nil)
+								])),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('col-md-4 col-sm-12 breadcrumb text-uppercase wow fadeInUp xs-display-none'),
+									A2(elm$html$Html$Attributes$attribute, 'data-wow-duration', '600ms')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$ul,
+									_List_Nil,
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$href('#/blogs')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('Blogs')
+														]))
+												])),
+											A2(
+											elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$href('#/blogs')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('About me')
+														]))
+												]))
+										])),
+									elm$html$Html$text('                    ')
+								]))
+						]))
+				]))
+		]));
+var elm$html$Html$i = _VirtualDom_node('i');
+var elm$html$Html$img = _VirtualDom_node('img');
+var elm$html$Html$p = _VirtualDom_node('p');
+var elm$html$Html$Attributes$alt = elm$html$Html$Attributes$stringProperty('alt');
+var elm$html$Html$Attributes$src = function (url) {
+	return A2(
+		elm$html$Html$Attributes$stringProperty,
+		'src',
+		_VirtualDom_noJavaScriptOrHtmlUri(url));
+};
+var author$project$Blogs$View$listBlogs = A2(
+	elm$html$Html$section,
+	_List_fromArray(
+		[
+			elm$html$Html$Attributes$class('blog-full-width-section wow')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			elm$html$Html$div,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('container')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$html$Html$div,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$class('row blog-masonry blog-masonry-2col no-transition')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('col-md-6 col-sm-6 col-xs-6 blog-listing')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('blog-image')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$a,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$href('#/blogs/1')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$img,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$alt(''),
+															elm$html$Html$Attributes$src('http://placehold.it/600x900')
+														]),
+													_List_Nil)
+												]))
+										])),
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('blog-details')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-date')
+												]),
+											_List_fromArray(
+												[
+													elm$html$Html$text('Written by Stephen Cate'),
+													elm$html$Html$text('| 17 April 2019')
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-title')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$href('#/blogs/1')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('Game of Life')
+														]))
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-short-description')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text('This is my Ice Breaker speech in Toastmasters. An Ice Breaker speech is the first speech you would give to your club as a new member to let everyone know more about you. First time lucky - I won my first Best Speaker award with this speech. ')
+														])),
+													A2(
+													elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text('Time to read : ~8 minutes')
+														]))
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('separator-line bg-black no-margin-lr')
+												]),
+											_List_Nil),
+											A2(
+											elm$html$Html$div,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('blog-like'),
+															elm$html$Html$Attributes$href('#/blogs/1')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-heart-o')
+																]),
+															_List_Nil),
+															elm$html$Html$text('Likes')
+														])),
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('blog-share'),
+															elm$html$Html$Attributes$href('#/blogs/1')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-share-alt')
+																]),
+															_List_Nil),
+															elm$html$Html$text('Share')
+														]))
+												]))
+										]))
+								])),
+							elm$html$Html$text('                    '),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('col-md-6 col-sm-6 col-xs-6 blog-listing')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('blog-image')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$a,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$href('#/blogs/2')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$img,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$alt(''),
+															elm$html$Html$Attributes$src('http://placehold.it/599x449')
+														]),
+													_List_Nil)
+												]))
+										])),
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('blog-details')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-date')
+												]),
+											_List_fromArray(
+												[
+													elm$html$Html$text('Written by Stephen Cate'),
+													elm$html$Html$text('| 01 May 2019')
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-title')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$href('#/blogs/2')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('Knocks on the door')
+														]))
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-short-description')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text('[ This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster have to give a speech twice then do an evaluation at the end for someone else\'s speech. This won me the Best Speaker award the second time, yey! :)')
+														])),
+													A2(
+													elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text('Time to read : ~7 minutes')
+														]))
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('separator-line bg-black no-margin-lr')
+												]),
+											_List_Nil),
+											A2(
+											elm$html$Html$div,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('blog-like'),
+															elm$html$Html$Attributes$href('#/blogs/2')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-heart-o')
+																]),
+															_List_Nil),
+															elm$html$Html$text('Likes')
+														])),
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('blog-share'),
+															elm$html$Html$Attributes$href('#/blogs/2')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-share-alt')
+																]),
+															_List_Nil),
+															elm$html$Html$text('Share')
+														]))
+												]))
+										]))
+								])),
+							elm$html$Html$text('                    '),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('col-md-6 col-sm-6 col-xs-6 blog-listing')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('blog-image')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$a,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$href('blog-single-right-sidebar.html')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$img,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$alt(''),
+															elm$html$Html$Attributes$src('http://placehold.it/600x900')
+														]),
+													_List_Nil)
+												]))
+										])),
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('blog-details')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-date')
+												]),
+											_List_fromArray(
+												[
+													elm$html$Html$text('Posted by '),
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$href('blog-masonry-2columns.html')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('Nathan Ford')
+														])),
+													elm$html$Html$text('| 02 January 2015')
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-title')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$href('blog-single-right-sidebar.html')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('For A More Readable Web Page')
+														]))
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-short-description')
+												]),
+											_List_fromArray(
+												[
+													elm$html$Html$text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.')
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('separator-line bg-black no-margin-lr')
+												]),
+											_List_Nil),
+											A2(
+											elm$html$Html$div,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('blog-like'),
+															elm$html$Html$Attributes$href('#')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-heart-o')
+																]),
+															_List_Nil),
+															elm$html$Html$text('Likes')
+														])),
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('blog-share'),
+															elm$html$Html$Attributes$href('#')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-share-alt')
+																]),
+															_List_Nil),
+															elm$html$Html$text('Share')
+														])),
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('comment'),
+															elm$html$Html$Attributes$href('#')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-comment-o')
+																]),
+															_List_Nil),
+															elm$html$Html$text('3 comment(s)')
+														]))
+												]))
+										]))
+								])),
+							elm$html$Html$text('                    '),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('col-md-6 col-sm-6 col-xs-6 blog-listing')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('blog-image')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$a,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$href('blog-single-right-sidebar.html')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$img,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$alt(''),
+															elm$html$Html$Attributes$src('http://placehold.it/599x449')
+														]),
+													_List_Nil)
+												]))
+										])),
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('blog-details')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-date')
+												]),
+											_List_fromArray(
+												[
+													elm$html$Html$text('Posted by '),
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$href('blog-masonry-2columns.html')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('Aarron Walter')
+														])),
+													elm$html$Html$text('| 02 January 2015')
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-title')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$href('blog-single-right-sidebar.html')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('Redesigning With Personality')
+														]))
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('blog-short-description')
+												]),
+											_List_fromArray(
+												[
+													elm$html$Html$text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.')
+												])),
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('separator-line bg-black no-margin-lr')
+												]),
+											_List_Nil),
+											A2(
+											elm$html$Html$div,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('blog-like'),
+															elm$html$Html$Attributes$href('#')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-heart-o')
+																]),
+															_List_Nil),
+															elm$html$Html$text('Likes')
+														])),
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('blog-share'),
+															elm$html$Html$Attributes$href('#')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-share-alt')
+																]),
+															_List_Nil),
+															elm$html$Html$text('Share')
+														])),
+													A2(
+													elm$html$Html$a,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('comment'),
+															elm$html$Html$Attributes$href('#')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$i,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('fa fa-comment-o')
+																]),
+															_List_Nil),
+															elm$html$Html$text('3 comment(s)')
+														]))
+												]))
+										]))
+								]))
+						]))
+				]))
+		]));
+var author$project$Blogs$Blog$View$Blog1$view = function () {
+	var pText = function (s) {
+		return A2(
+			elm$html$Html$p,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('text-med')
+				]),
+			_List_fromArray(
+				[
+					elm$html$Html$text(s)
+				]));
+	};
+	return A2(
+		elm$html$Html$section,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('blog-full-width-section wow fadeIn')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$div,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('container')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('row')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$p,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('margin-right-ten text-extra-large')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('[ This is my Ice Breaker speech in Toastmasters. An Ice Breaker speech is the first speech you would give to your club as a new member to let everyone know more about you. First time lucky - I won my first Best Speaker award with this speech. Time to read : 6 minutes. ]')
+											]))
+									]))
+							])),
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('row')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$p,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('text-large font-weight-600 text-black margin-three no-margin-top')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('Game of Life  – by Stephen Cate')
+											])),
+										pText('I was born and raised in Manila, Philippines. And back home, basketball was the national sport. It is part of the Filipino culture, so much so that tradition has it to pass the love of the game from one generation to the next. So my father did to us, what his father did – shared his love of the game with me and my brother!'),
+										pText('Mr. Toastmaster, fellow toastmasters, have you ever been talked into playing or following an official family sport when you were young? Did you have much choice?'),
+										pText('For me and my older brother - the default and only choice was basketball! '),
+										pText('From an early age, my father wanted to polish his future basketball talents – me and my bro. So when I was young, even if we didn’t have much money to go around, he made it a point that me and my brother have a home court advantage. With scraps of plywood and a dusty old ring, he built us a makeshift basketball court in our very own backyard. '),
+										pText('Our home court was hung on a tree, a fairly tall one I should say. Because for some reason, I rarely ever made a shot in that court! Although it’s safe to say - I’m not really a natural for the sport. As a kid, I was skinny, I was short, and with all my strength, I can manage to jump a leaping 6-inches off the ground! Proud to say that at least that a little higher than a soda can!'),
+										pText('But my dad, was a determined man. He was very patient as well. I remember the countless times he would try to teach me the basics. Like how to hold and dribble the ball, and of course, the only way to win in the game – making shots. He showed me how it begins with holding the ball with both hands, doing a semi-squat to prepare for a short jump, then with arms elevating the ball at shoulder level, ring insight – release!'),
+										pText('I realised early on how hard the sport I have been committed to is. The skinny, and short kid that I was, having the strength of a baby, launching the ball for a shot would more often than not end up short. It was frustrating! But my dad would not let a slight physical limitation hinder me from my progress, he really sees the diamond in the rubble. So countless time, he would hold me in my hips, raise me closer to the ring, so finally I can take a closer shot... then, swoosh… still, my shots would not even reach the net!'),
+										pText('I took a lot of those assisted shots with my dad, more times hitting air than getting buckets. But it was really fun and I have truly developed a love for the game to keep playing and learning as I grew up.'),
+										pText('There is only one thing I don’t like about basketball. That is, when the ball hits you in the face! A basketball is hard, you will definitely feel it when it lands. Or not - when at times it hits you so hard, you’d feel numb first then swollen after, until the pain slowly but surely dawns on you scorched face!'),
+										pText('But as you may know, pain is part of the game. I have learned this truth in basketball just as it applies in the great game of life. '),
+										pText('In November 12, 1993, in the middle of his basketball game – my father collapsed. He fell to the ground for no expected reason. He was later rushed to the hospital and I remembered this day so clearly. It was a Friday, 8am and I was in the middle of my class in second grade when my Aunt knocked on our classroom door. My teacher came to see her and after a brief exchange of words, my teacher came towards me, without saying words, tears swelling up her eye, she helped me pack all my things and sent me off with my aunt. We came to the hospital straight from school. But at that point, the game has already taken my father’s life. The doctors said severe fatigue caused a fatal aneurysm.'),
+										pText('My life and my family’s life have never been the same. From then, we have been in the game playing one man short. We have lost our Most Valuable Player, our MVP - my dad. Life has been very difficult without our main man to say the least. We found ourselves playing a rather long game and everyone in the team had to step up, my mother most specially. '),
+										pText('My mom kept the family through a small business of making and selling bedsheets and linen. At 8, I learned how to make money by selling what we made in our stall on a nearby wet market. So did my big brother and sister. This job filled out nearly all school holidays and breaks for me and my siblings growing up. But more so, from then on, I rarely saw my mother have any rest or break, let alone sleep before I do or wake any later than anyone else in the house.'),
+										pText('Like a playing coach, my mom set our plays so me and my siblings could take our positions on the court. Every score we made to move forward were hard fought. The defence, our challenges, obstacles were far too many, and they were standing 10 feet tall!'),
+										pText('But looking back now, decades past since that faithful day of November, I could say, our family have been playing ahead. Slowly but surely, we caught up the scoreboards. My siblings and I are all professionals now in our respective fields. And with the grace of the almighty, I having been here in Australia for the last 4 years as a migrant, with my two daughters, my lovely wife in a place to call our home.'),
+										pText('Basketball is a team sport. Over the years, playing the game, I realised that the beauty of it, is not just in seeing one player scoring a basket, or making a high-flying slam dunk. It is not in celebrating the triumph of one individual player, or being weighed down by the loss of another. The real beauty of the game is in seeing each teammate contributing towards the same goal - to finish the game and try to win, no matter what, until ultimately, the time is up.'),
+										pText('Mr. Toastmaster...')
+									]))
+							]))
+					]))
+			]));
+}();
+var author$project$Blogs$Blog$View$Blog2$view = function () {
+	var pText = function (s) {
+		return A2(
+			elm$html$Html$p,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('text-med')
+				]),
+			_List_fromArray(
+				[
+					elm$html$Html$text(s)
+				]));
+	};
+	return A2(
+		elm$html$Html$section,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('blog-full-width-section wow fadeIn')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$div,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('container')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('row')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$p,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('margin-right-ten text-extra-large')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('[ This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster have to give a speech twice then do an evaluation at the end for someone else\'s speech. This won me the Best Speaker award the second time, yey! :) ]')
+											]))
+									]))
+							])),
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('row')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$p,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('text-large font-weight-600 text-black margin-three no-margin-top')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('Knocks on the Door by Stephen Cate')
+											])),
+										pText('I have lost count of how many chances I blew, and how many opportunities I failed to make the most of throughout my life. But I sure do remember a few times when something unexpected stumbled upon me and I made it count.'),
+										pText('Mr. Toastmaster, ladies and gentlemen, how many times have you heard an unexpected opportunity knock on the door that you were not ready for? How many times have you faced them? How much of them have you ignored?'),
+										pText('I believe that it takes courage and faith to face the unexpected. We don\'t always get what we want. And sadly, we don\'t always get what we deserve. But what is important is that from time to time, we stumble upon our reward just by pushing through.'),
+										pText('Let me share with you - the most memorable date I ever had, when I was younger of course, happened for me unexpectedly. It was a Friday to cap what was a tough week at work. There I was having dinner with colleagues as we are whining about how terrible the week was, how horrible our bosses were, all while consoling one another for another tough week up ahead – there will be lights at the end of the tunnel, we said knowing too well Monday is not too far off. Me and my teammates were wrapping up  when I got a call from one of my best mates. He sounded nervous and anxious and needy at the same time when he asked - Hey, bro, where are you? You don’t have any plans for the night, right?! I need your help!'),
+										pText('I was feeling really tired and I felt like its a wrap for me. But as he explained, my buddy needed a wingman! Apparently for some reason that I will soon find out, her date did not want to go. Not without a chaperone – her Sister! My buddy needed to bring a plus one to deal with her date\'s plus one.  And of course, like a true friend who comes to his mates in dire need, I obliged.'),
+										pText('You can just imagine how the unplanned date went with two un-expecting people caught up in the situation. And I have to be honest, I am not as smooth then as I am now! But our unexpected date was unexpectedly amazing and one that seemed quite promising.'),
+										pText('Fast forward 10 years since then, I could tell you my friend and her date worked out - for a brief few months until they split. But as for the chaperone-sister and myself, well we have been together ever since. Now, we have been happily married having our two lovely daughters.'),
+										pText('That night my friend called knocking on the door with an opportunity from nowhere, I was standing on the other side, feeling tired and wanting to call it a night. I could not have guessed the possibilities. But who knew? Opening the door at a time when I did not feel like it, turned out to be the best person that has ever happened to me.'),
+										pText('We can rarely tell what will turn out when we entertain something or someone unexpected though. Will we open the door to find a pleasant surprise? Or will we be opening a can of worms? Do we let lose Pandora\'s box?'),
+										pText('It takes courage and faith to face the unexpected. We don\'t always get what we want. And sadly, we don\'t always get what we deserve. But what is important is that from time to time, we stumble upon our reward just by pushing through.'),
+										pText('10 years ago, from where the chaperone-sister was standing, I was the guy who came, who saw – really liked what he saw – then started knocking with all gusto and enthusiasm! However, I must have come at the worst of times or the best of times. Only she can tell.'),
+										pText('You see that night, I came unexpectedly, knocking at the door just a few months after someone she let in her life for many years, had left her in pain, and a broken heart.'),
+										pText('That night, when her sister, my best mate’s date, insisted that my wife come along with her, she had all the reason to say no. She could not have guessed the possibilities. And she surely made a huge bet as she took a chance with the unexpected – me. But who knew, opening her doors for me at a time, when she did not feel like it, would lead to best person she would ever meet, ever!'),
+										pText('It takes courage and faith to face the unexpected. We don\'t always get what we want. And sadly, we don\'t always get what we deserve. But what is important is that from time to time, we stumble upon our reward just by pushing through.'),
+										pText('Ladies and gentlemen – for better or for worse? Ready or not? What will you do when the time comes, and you hear those unexpected knocks on your door?'),
+										pText('Mr. Toastmaster...')
+									]))
+							]))
+					]))
+			]));
+}();
+var author$project$Blogs$View$readBlog = function (blogId) {
+	switch (blogId) {
+		case 1:
+			return author$project$Blogs$Blog$View$Blog1$view;
+		case 2:
+			return author$project$Blogs$Blog$View$Blog2$view;
+		default:
+			return author$project$Blogs$Blog$View$Blog1$view;
+	}
+};
 var author$project$Error$View$view = function (message) {
 	return A2(
 		elm$html$Html$div,
@@ -6050,31 +7088,25 @@ var author$project$Error$View$view = function (message) {
 			]));
 };
 var author$project$Blogs$View$view = function (model) {
-	switch (model.$) {
-		case 'ListView':
-			return author$project$Blogs$View$listBlogs;
-		case 'BlogEntryView':
-			var blogId = model.a;
-			return author$project$Blogs$View$readBlog(blogId);
-		default:
-			return author$project$Error$View$view('Not found');
-	}
+	var body = function () {
+		switch (model.$) {
+			case 'ListView':
+				return author$project$Blogs$View$listBlogs;
+			case 'BlogEntryView':
+				var blogId = model.a;
+				return author$project$Blogs$View$readBlog(blogId);
+			default:
+				return author$project$Error$View$view('Not found');
+		}
+	}();
+	return _List_fromArray(
+		[author$project$Blogs$View$blogsHeader, body]);
 };
 var author$project$Message$BlogsMsg = function (a) {
 	return {$: 'BlogsMsg', a: a};
 };
 var elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
 var elm$html$Html$map = elm$virtual_dom$VirtualDom$map;
-var elm$html$Html$section = _VirtualDom_node('section');
-var elm$json$Json$Encode$string = _Json_wrap;
-var elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			elm$json$Json$Encode$string(string));
-	});
-var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
 var author$project$View$contents = function (model) {
 	var header = A2(
 		elm$html$Html$div,
@@ -6121,39 +7153,33 @@ var author$project$View$contents = function (model) {
 		var _n0 = model.pageState;
 		switch (_n0.$) {
 			case 'Loading':
-				return A2(
-					elm$html$Html$div,
-					_List_Nil,
-					_List_fromArray(
-						[
-							elm$html$Html$text('Still loading data')
-						]));
+				return _List_fromArray(
+					[
+						A2(
+						elm$html$Html$div,
+						_List_Nil,
+						_List_fromArray(
+							[
+								elm$html$Html$text('Still loading data')
+							]))
+					]);
 			case 'Loaded':
 				return A2(
-					elm$html$Html$map,
-					author$project$Message$BlogsMsg,
+					elm$core$List$map,
+					elm$html$Html$map(author$project$Message$BlogsMsg),
 					author$project$Blogs$View$view(model.blogs));
 			default:
 				var message = _n0.a;
-				return author$project$Error$View$view(message);
+				return _List_fromArray(
+					[
+						author$project$Error$View$view(message)
+					]);
 		}
 	}();
 	return A2(
 		elm$html$Html$div,
 		_List_Nil,
-		_List_fromArray(
-			[
-				A2(
-				elm$html$Html$section,
-				_List_Nil,
-				_List_fromArray(
-					[header])),
-				A2(
-				elm$html$Html$section,
-				_List_Nil,
-				_List_fromArray(
-					[body]))
-			]));
+		A2(elm$core$List$cons, header, body));
 };
 var author$project$View$view = function (model) {
 	return {

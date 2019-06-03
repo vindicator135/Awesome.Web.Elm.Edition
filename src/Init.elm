@@ -19,5 +19,7 @@ init url key =
                     (Loaded, Blogs.ListView)
                 NotFound -> 
                     (Error "Page not found", Blogs.NotFound)
+
+        _ = Debug.log "init" (url)
     in
     ( Model key pageState blogs, Cmd.none )

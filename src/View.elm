@@ -35,16 +35,15 @@ contents model =
         body = 
             case model.pageState of
                 Loading ->
-                    div [] [ text "Still loading data" ]
+                    [ div [] [ text "Still loading data" ] ]
 
                 Loaded ->
                     Blogs.view model.blogs
-                    |> Html.map BlogsMsg
+                    |> List.map (Html.map BlogsMsg)
 
                 Error message ->
-                    Error.view message
+                    [ Error.view message ]
     in
         div []
-            [ section [] [ header ]
-            , section [] [ body ]
-            ]        
+            <| (header
+            :: body)

@@ -20,7 +20,7 @@ matchers =
 
 parseUrl : Url -> Route
 parseUrl url =
-    case (Parser.parse matchers url) of
+    case url |> (fromFragment >> Parser.parse matchers) of
         Just route ->
             route
 
