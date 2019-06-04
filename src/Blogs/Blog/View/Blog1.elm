@@ -1,6 +1,6 @@
 module Blogs.Blog.View.Blog1 exposing (view)
 
-import Html exposing (Html, section, div, text, p)
+import Html exposing (Html, section, div, text, p, i, h1, h6, blockquote)
 import Html.Attributes exposing (class)
 
 view : Html msg
@@ -13,16 +13,20 @@ view =
         [ div [ class "container"] 
             [ div [ class "row" ] 
                 [ div [ class "col-md-12 col-sm-12"]
-                    [ p [ class "margin-right-ten text-extra-large"] 
-                        [ text "[ This is my Ice Breaker speech in Toastmasters. An Ice Breaker speech is the first speech you would give to your club as a new member to let everyone know more about you. First time lucky - I won my first Best Speaker award with this speech. Time to read : 6 minutes. ]" ]
+                    [ blockquote [ class "margin-right-ten text-extra-large"] 
+                        [ text "This is my Ice Breaker speech in Toastmasters. An Ice Breaker speech is the first speech you would give to your club as a new member to let everyone know more about you. First time lucky - I won my first Best Speaker award with this speech. Time to read : 6 minutes." ]
                     ]
                 ] 
-            ,div [ class "row" ] 
-                [ div [ class "col-md-12 col-sm-12"] 
-                    [ p [ class "text-large font-weight-600 text-black margin-three no-margin-top"]
-                        [ text "Game of Life  – by Stephen Cate"
+            , div [ class "row" ] 
+                [ div [ class "center-col text-center col-md-12 col-sm-12"] 
+                    [ div [ class "subheader bg-white margin-three no-margin-top"]
+                        [ i [ class "icon-hotairballoon large-icon"] []
+                        , h1 [] [ text "Game of Life" ]
+                        , h6 [] [ text "by Stephen Cate" ]
                         ]
-                    , pText <| "I was born and raised in Manila, Philippines. And back home, basketball was the national sport. It is part of the Filipino culture, so much so that tradition has it to pass the love of the game from one generation to the next. So my father did to us, what his father did – shared his love of the game with me and my brother!"
+                    ]
+                , div [ class "col-md-12 col-sm-12"] 
+                    [ pText <| "I was born and raised in Manila, Philippines. And back home, basketball was the national sport. It is part of the Filipino culture, so much so that tradition has it to pass the love of the game from one generation to the next. So my father did to us, what his father did – shared his love of the game with me and my brother!"
                     , pText <| "Mr. Toastmaster, fellow toastmasters, have you ever been talked into playing or following an official family sport when you were young? Did you have much choice?" 
                     , pText <| "For me and my older brother - the default and only choice was basketball! "
                     , pText <| "From an early age, my father wanted to polish his future basketball talents – me and my bro. So when I was young, even if we didn’t have much money to go around, he made it a point that me and my brother have a home court advantage. With scraps of plywood and a dusty old ring, he built us a makeshift basketball court in our very own backyard. "

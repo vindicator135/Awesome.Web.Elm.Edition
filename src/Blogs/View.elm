@@ -7,6 +7,8 @@ import Blogs.Message exposing (Msg(..))
 import Blogs.Model exposing (Model, ViewState(..))
 import Blogs.Blog.View.Blog1 as Blog1
 import Blogs.Blog.View.Blog2 as Blog2
+import Blogs.Blog.View.Blog3 as Blog3
+import Blogs.Blog.View.Blog4 as Blog4
 import Types.Alias exposing (BlogId)
 import Error.View as Error
 
@@ -35,7 +37,7 @@ blogsHeader =
                     [ h1 [ class "black-text" ]
                         [ text "A Journey To Awesome" ]
                     , span [ class "xs-display-none" ] 
-                        [ text "My thoughts on life, family and everything in between..." ]
+                        [ text "Toastmaster speeches: My thoughts on life, family and everything in between..." ]
                     , div [ class "separator-line margin-three bg-black no-margin-lr sm-margin-top-three sm-margin-bottom-three no-margin-bottom xs-display-none"] 
                         []
                     ]
@@ -61,6 +63,8 @@ readBlog blogId =
     case blogId of
         1 -> Blog1.view
         2 -> Blog2.view
+        3 -> Blog3.view
+        4 -> Blog4.view
         _ -> Blog1.view
 
 
@@ -72,7 +76,7 @@ listBlogs =
                 [ div [ class "col-md-6 col-sm-6 col-xs-6 blog-listing" ]
                     [ div [ class "blog-image" ]
                         [ a [ href "#/blogs/1" ]
-                            [ img [ alt "", src "http://placehold.it/600x900" ]
+                            [ img [ alt "", src "images/street-basketball.jpg" ]
                                 []
                             ]
                         ]
@@ -109,7 +113,7 @@ listBlogs =
                 , div [ class "col-md-6 col-sm-6 col-xs-6 blog-listing" ]
                     [ div [ class "blog-image" ]
                         [ a [ href "#/blogs/2" ]
-                            [ img [ alt "", src "http://placehold.it/599x449" ]
+                            [ img [ alt "", src "images/blue-door.jpg" ]
                                 []
                             ]
                         ]
@@ -123,7 +127,7 @@ listBlogs =
                                 [ text "Knocks on the door" ]
                             ]
                         , div [ class "blog-short-description" ]
-                            [ p [] [ text "[ This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster have to give a speech twice then do an evaluation at the end for someone else's speech. This won me the Best Speaker award the second time, yey! :)" ]
+                            [ p [] [ text "This is my second speech in TM. I did this as part of the Presentation Mastery learning pathway where a Toastmaster has to give a speech twice then do an evaluation at the end for someone else's speech. This won me the Best Speaker award the second time - so happy! yey! :)" ]
                             , p [] [ text "Time to read : ~7 minutes"]
                             ]
                         , div [ class "separator-line bg-black no-margin-lr" ]
@@ -142,44 +146,39 @@ listBlogs =
                             ]
                         ]
                     ]
-                , text "                    "
+                ,  text "                    "
                 , div [ class "col-md-6 col-sm-6 col-xs-6 blog-listing" ]
                     [ div [ class "blog-image" ]
-                        [ a [ href "blog-single-right-sidebar.html" ]
-                            [ img [ alt "", src "http://placehold.it/600x900" ]
+                        [ a [ href "#/blogs/3" ]
+                            [ img [ alt "", src "images/winner.jpg" ]
                                 []
                             ]
                         ]
                     , div [ class "blog-details" ]
                         [ div [ class "blog-date" ]
-                            [ text "Posted by "
-                            , a [ href "blog-masonry-2columns.html" ]
-                                [ text "Nathan Ford" ]
-                            , text "| 02 January 2015"
+                            [ text "Written by Stephen Cate "
+                            , text "| 15 May 2019"
                             ]
                         , div [ class "blog-title" ]
-                            [ a [ href "blog-single-right-sidebar.html" ]
-                                [ text "For A More Readable Web Page" ]
+                            [ a [ href "#/blogs/3" ]
+                                [ text "Legacy" ]
                             ]
                         , div [ class "blog-short-description" ]
-                            [ text "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." ]
+                            [ p [] [ text "My 3rd speech in Toastmasters. The goal for this is to incorporate the feedback from the previous speech. The last feedback I got was to draw the audience in my story through eye contact. Seemed like the story and the goal have hit the mark - Best Speech for the night, horaay! :) " ]
+                            , p [] [ text "Time to read: ~7 minutes" ]
+                            ]
                         , div [ class "separator-line bg-black no-margin-lr" ]
                             []
                         , div []
-                            [ a [ class "blog-like", href "#" ]
+                            [ a [ class "blog-like", href "#/blogs/3" ]
                                 [ i [ class "fa fa-heart-o" ]
                                     []
                                 , text "Likes"
                                 ]
-                            , a [ class "blog-share", href "#" ]
+                            , a [ class "blog-share", href "#/blogs/1" ]
                                 [ i [ class "fa fa-share-alt" ]
                                     []
                                 , text "Share"
-                                ]
-                            , a [ class "comment", href "#" ]
-                                [ i [ class "fa fa-comment-o" ]
-                                    []
-                                , text "3 comment(s)"
                                 ]
                             ]
                         ]
@@ -187,41 +186,36 @@ listBlogs =
                 , text "                    "
                 , div [ class "col-md-6 col-sm-6 col-xs-6 blog-listing" ]
                     [ div [ class "blog-image" ]
-                        [ a [ href "blog-single-right-sidebar.html" ]
-                            [ img [ alt "", src "http://placehold.it/599x449" ]
+                        [ a [ href "#/blogs/4" ]
+                            [ img [ alt "", src "images/glass.jpg" ]
                                 []
                             ]
                         ]
                     , div [ class "blog-details" ]
                         [ div [ class "blog-date" ]
-                            [ text "Posted by "
-                            , a [ href "blog-masonry-2columns.html" ]
-                                [ text "Aarron Walter" ]
-                            , text "| 02 January 2015"
+                            [ text "Written by Stephen Cate "
+                            , text "| 29 May 2019"
                             ]
                         , div [ class "blog-title" ]
-                            [ a [ href "blog-single-right-sidebar.html" ]
-                                [ text "Redesigning With Personality" ]
+                            [ a [ href "#/blogs/4" ]
+                                [ text "Assurance" ]
                             ]
                         , div [ class "blog-short-description" ]
-                            [ text "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." ]
+                            [ p [] [text "I wrote this thinking about by my wife's near-death experience. I haven't presented this yet to the club so no idea yet if the story lands. But I'm really keen if the structure of the story holds and I look forward to presenting it." ]
+                            , p [] [text "Time to read: ~7 minutes"]
+                            ]
                         , div [ class "separator-line bg-black no-margin-lr" ]
                             []
                         , div []
-                            [ a [ class "blog-like", href "#" ]
+                            [ a [ class "blog-like", href "#/blogs/4" ]
                                 [ i [ class "fa fa-heart-o" ]
                                     []
                                 , text "Likes"
                                 ]
-                            , a [ class "blog-share", href "#" ]
+                            , a [ class "blog-share", href "#/blogs/4" ]
                                 [ i [ class "fa fa-share-alt" ]
                                     []
                                 , text "Share"
-                                ]
-                            , a [ class "comment", href "#" ]
-                                [ i [ class "fa fa-comment-o" ]
-                                    []
-                                , text "3 comment(s)"
                                 ]
                             ]
                         ]
@@ -229,77 +223,3 @@ listBlogs =
                 ]
             ]
         ]
-
-
-
-
--- singleView : Blog -> Html Msg
--- singleView blog =
---     div [ class "container" ]
---         [ div [ class "row" ]
---             [ pretitle blog.pretitle
---             ]
---         , div [ class "row" ]
---             [ header "" blog.title blog.published
---             ]
---         , div [ class "row" ]
---             [ getBlogHtml blog.blogId
---             ]
---         ]
-
-
--- listView : Int -> List Blog -> Html Msg
--- listView blogId blogs =
---     let
---         firstEntry =
---             Maybe.withDefault emptyBlog <| List.head <| List.filter (\b -> b.blogId == blogId) blogs
---     in
---         singleView firstEntry
-
-
--- getBlogHtml : Int -> Html Msg
--- getBlogHtml blogId =
---     case blogId when
---         1 -> Blog1.view NoOp
---         2 -> Blog2.view NoOp
---         3 -> Blog3.view NoOp
---         _ -> div [] []
-
-
--- pretitle : String -> Html Msg
--- pretitle title =
---     h3 [ class "pb-3 mb-4 font-italic border-bottom" ] [ text title ]
-
-
--- header : String -> String -> String -> Html Msg
--- header _ title published =
---     div [ class "blog-post" ]
---         [ h1 [] [ text title ]
---         , p [ style "color" "#999" ] [ text published ]
---         ]
-
-
--- prelude : String -> Html Msg
--- prelude pretext =
---     div []
---         [ p [] [ text pretext ] ]
-
-
--- htmlPrelude : String -> Html Msg
--- htmlPrelude preludeText =
---     div [ property "innerHTML" <| Json.Encode.string preludeText ] []
-
-
--- htmlBody : String -> Html Msg
--- htmlBody content =
---     div [ property "innerHTML" <| Json.Encode.string content ] []
-
-
--- getListViewImage : Int -> String
--- getListViewImage blogId =
---     if blogId == 1 then
---         "/images/posts/180x250_flags.png"
---     else if blogId == 2 then
---         "/images/posts/180x250_pig.png"
---     else
---         ""

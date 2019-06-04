@@ -1,6 +1,6 @@
 module Blogs.Blog.View.Blog2 exposing (view)
 
-import Html exposing (Html, section, div, text, p)
+import Html exposing (Html, section, div, text, p, i, h1, h6, blockquote)
 import Html.Attributes exposing (class)
 
 view : Html msg
@@ -13,16 +13,20 @@ view =
         [ div [ class "container"] 
             [ div [ class "row" ] 
                 [ div [ class "col-md-12 col-sm-12"]
-                    [ p [ class "margin-right-ten text-extra-large"] 
-                        [ text "[ This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster have to give a speech twice then do an evaluation at the end for someone else's speech. This won me the Best Speaker award the second time, yey! :) ]" ]
+                    [ blockquote [ class "margin-right-ten text-extra-large"] 
+                        [ text "This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster has to give a speech twice then do an evaluation at the end for someone else's speech. This won me the Best Speaker award the second time, yey! :)" ]
                     ]
-                ] 
-            ,div [ class "row" ] 
-                [ div [ class "col-md-12 col-sm-12"] 
-                    [ p [ class "text-large font-weight-600 text-black margin-three no-margin-top"]
-                        [ text "Knocks on the Door by Stephen Cate"
+                ]
+            , div [ class "row" ] 
+                [ div [ class "center-col text-center col-md-12 col-sm-12"] 
+                    [ div [ class "subheader bg-white margin-three no-margin-top"]
+                        [ i [ class "icon-gift large-icon"] []
+                        , h1 [] [ text "Knocks on the Door" ]
+                        , h6 [] [ text "by Stephen Cate" ]
                         ]
-                    , pText <| "I have lost count of how many chances I blew, and how many opportunities I failed to make the most of throughout my life. But I sure do remember a few times when something unexpected stumbled upon me and I made it count."
+                    ]
+                , div [ class "col-md-12 col-sm-12"]
+                    [ pText <| "I have lost count of how many chances I blew, and how many opportunities I failed to make the most of throughout my life. But I sure do remember a few times when something unexpected stumbled upon me and I made it count."
                     , pText <| "Mr. Toastmaster, ladies and gentlemen, how many times have you heard an unexpected opportunity knock on the door that you were not ready for? How many times have you faced them? How much of them have you ignored?"
                     , pText <| "I believe that it takes courage and faith to face the unexpected. We don't always get what we want. And sadly, we don't always get what we deserve. But what is important is that from time to time, we stumble upon our reward just by pushing through."
                     , pText <| "Let me share with you - the most memorable date I ever had, when I was younger of course, happened for me unexpectedly. It was a Friday to cap what was a tough week at work. There I was having dinner with colleagues as we are whining about how terrible the week was, how horrible our bosses were, all while consoling one another for another tough week up ahead – there will be lights at the end of the tunnel, we said knowing too well Monday is not too far off. Me and my teammates were wrapping up  when I got a call from one of my best mates. He sounded nervous and anxious and needy at the same time when he asked - Hey, bro, where are you? You don’t have any plans for the night, right?! I need your help!"

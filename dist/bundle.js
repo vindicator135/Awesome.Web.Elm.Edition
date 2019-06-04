@@ -6143,7 +6143,7 @@ var author$project$Blogs$View$blogsHeader = A2(
 										]),
 									_List_fromArray(
 										[
-											elm$html$Html$text('My thoughts on life, family and everything in between...')
+											elm$html$Html$text('Toastmaster speeches: My thoughts on life, family and everything in between...')
 										])),
 									A2(
 									elm$html$Html$div,
@@ -6268,7 +6268,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$alt(''),
-															elm$html$Html$Attributes$src('http://placehold.it/600x900')
+															elm$html$Html$Attributes$src('images/street-basketball.jpg')
 														]),
 													_List_Nil)
 												]))
@@ -6415,7 +6415,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$alt(''),
-															elm$html$Html$Attributes$src('http://placehold.it/599x449')
+															elm$html$Html$Attributes$src('images/blue-door.jpg')
 														]),
 													_List_Nil)
 												]))
@@ -6471,7 +6471,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_Nil,
 													_List_fromArray(
 														[
-															elm$html$Html$text('[ This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster have to give a speech twice then do an evaluation at the end for someone else\'s speech. This won me the Best Speaker award the second time, yey! :)')
+															elm$html$Html$text('This is my second speech in TM. I did this as part of the Presentation Mastery learning pathway where a Toastmaster has to give a speech twice then do an evaluation at the end for someone else\'s speech. This won me the Best Speaker award the second time - so happy! yey! :)')
 														])),
 													A2(
 													elm$html$Html$p,
@@ -6553,7 +6553,7 @@ var author$project$Blogs$View$listBlogs = A2(
 											elm$html$Html$a,
 											_List_fromArray(
 												[
-													elm$html$Html$Attributes$href('blog-single-right-sidebar.html')
+													elm$html$Html$Attributes$href('#/blogs/3')
 												]),
 											_List_fromArray(
 												[
@@ -6562,7 +6562,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$alt(''),
-															elm$html$Html$Attributes$src('http://placehold.it/600x900')
+															elm$html$Html$Attributes$src('images/winner.jpg')
 														]),
 													_List_Nil)
 												]))
@@ -6583,18 +6583,8 @@ var author$project$Blogs$View$listBlogs = A2(
 												]),
 											_List_fromArray(
 												[
-													elm$html$Html$text('Posted by '),
-													A2(
-													elm$html$Html$a,
-													_List_fromArray(
-														[
-															elm$html$Html$Attributes$href('blog-masonry-2columns.html')
-														]),
-													_List_fromArray(
-														[
-															elm$html$Html$text('Nathan Ford')
-														])),
-													elm$html$Html$text('| 02 January 2015')
+													elm$html$Html$text('Written by Stephen Cate '),
+													elm$html$Html$text('| 15 May 2019')
 												])),
 											A2(
 											elm$html$Html$div,
@@ -6608,11 +6598,11 @@ var author$project$Blogs$View$listBlogs = A2(
 													elm$html$Html$a,
 													_List_fromArray(
 														[
-															elm$html$Html$Attributes$href('blog-single-right-sidebar.html')
+															elm$html$Html$Attributes$href('#/blogs/3')
 														]),
 													_List_fromArray(
 														[
-															elm$html$Html$text('For A More Readable Web Page')
+															elm$html$Html$text('Legacy')
 														]))
 												])),
 											A2(
@@ -6623,7 +6613,20 @@ var author$project$Blogs$View$listBlogs = A2(
 												]),
 											_List_fromArray(
 												[
-													elm$html$Html$text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.')
+													A2(
+													elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text('My 3rd speech in Toastmasters. The goal for this is to incorporate the feedback from the previous speech. The last feedback I got was to draw the audience in my story through eye contact. Seemed like the story and the goal have hit the mark - Best Speech for the night, horaay! :) ')
+														])),
+													A2(
+													elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text('Time to read: ~7 minutes')
+														]))
 												])),
 											A2(
 											elm$html$Html$div,
@@ -6642,7 +6645,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$class('blog-like'),
-															elm$html$Html$Attributes$href('#')
+															elm$html$Html$Attributes$href('#/blogs/3')
 														]),
 													_List_fromArray(
 														[
@@ -6660,7 +6663,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$class('blog-share'),
-															elm$html$Html$Attributes$href('#')
+															elm$html$Html$Attributes$href('#/blogs/1')
 														]),
 													_List_fromArray(
 														[
@@ -6672,24 +6675,6 @@ var author$project$Blogs$View$listBlogs = A2(
 																]),
 															_List_Nil),
 															elm$html$Html$text('Share')
-														])),
-													A2(
-													elm$html$Html$a,
-													_List_fromArray(
-														[
-															elm$html$Html$Attributes$class('comment'),
-															elm$html$Html$Attributes$href('#')
-														]),
-													_List_fromArray(
-														[
-															A2(
-															elm$html$Html$i,
-															_List_fromArray(
-																[
-																	elm$html$Html$Attributes$class('fa fa-comment-o')
-																]),
-															_List_Nil),
-															elm$html$Html$text('3 comment(s)')
 														]))
 												]))
 										]))
@@ -6715,7 +6700,7 @@ var author$project$Blogs$View$listBlogs = A2(
 											elm$html$Html$a,
 											_List_fromArray(
 												[
-													elm$html$Html$Attributes$href('blog-single-right-sidebar.html')
+													elm$html$Html$Attributes$href('#/blogs/4')
 												]),
 											_List_fromArray(
 												[
@@ -6724,7 +6709,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$alt(''),
-															elm$html$Html$Attributes$src('http://placehold.it/599x449')
+															elm$html$Html$Attributes$src('images/glass.jpg')
 														]),
 													_List_Nil)
 												]))
@@ -6745,18 +6730,8 @@ var author$project$Blogs$View$listBlogs = A2(
 												]),
 											_List_fromArray(
 												[
-													elm$html$Html$text('Posted by '),
-													A2(
-													elm$html$Html$a,
-													_List_fromArray(
-														[
-															elm$html$Html$Attributes$href('blog-masonry-2columns.html')
-														]),
-													_List_fromArray(
-														[
-															elm$html$Html$text('Aarron Walter')
-														])),
-													elm$html$Html$text('| 02 January 2015')
+													elm$html$Html$text('Written by Stephen Cate '),
+													elm$html$Html$text('| 29 May 2019')
 												])),
 											A2(
 											elm$html$Html$div,
@@ -6770,11 +6745,11 @@ var author$project$Blogs$View$listBlogs = A2(
 													elm$html$Html$a,
 													_List_fromArray(
 														[
-															elm$html$Html$Attributes$href('blog-single-right-sidebar.html')
+															elm$html$Html$Attributes$href('#/blogs/4')
 														]),
 													_List_fromArray(
 														[
-															elm$html$Html$text('Redesigning With Personality')
+															elm$html$Html$text('Assurance')
 														]))
 												])),
 											A2(
@@ -6785,7 +6760,20 @@ var author$project$Blogs$View$listBlogs = A2(
 												]),
 											_List_fromArray(
 												[
-													elm$html$Html$text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.')
+													A2(
+													elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text('I wrote this thinking about by my wife\'s near-death experience. I haven\'t presented this yet to the club so no idea yet if the story lands. But I\'m really keen if the structure of the story holds and I look forward to presenting it.')
+														])),
+													A2(
+													elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text('Time to read: ~7 minutes')
+														]))
 												])),
 											A2(
 											elm$html$Html$div,
@@ -6804,7 +6792,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$class('blog-like'),
-															elm$html$Html$Attributes$href('#')
+															elm$html$Html$Attributes$href('#/blogs/4')
 														]),
 													_List_fromArray(
 														[
@@ -6822,7 +6810,7 @@ var author$project$Blogs$View$listBlogs = A2(
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$class('blog-share'),
-															elm$html$Html$Attributes$href('#')
+															elm$html$Html$Attributes$href('#/blogs/4')
 														]),
 													_List_fromArray(
 														[
@@ -6834,24 +6822,6 @@ var author$project$Blogs$View$listBlogs = A2(
 																]),
 															_List_Nil),
 															elm$html$Html$text('Share')
-														])),
-													A2(
-													elm$html$Html$a,
-													_List_fromArray(
-														[
-															elm$html$Html$Attributes$class('comment'),
-															elm$html$Html$Attributes$href('#')
-														]),
-													_List_fromArray(
-														[
-															A2(
-															elm$html$Html$i,
-															_List_fromArray(
-																[
-																	elm$html$Html$Attributes$class('fa fa-comment-o')
-																]),
-															_List_Nil),
-															elm$html$Html$text('3 comment(s)')
 														]))
 												]))
 										]))
@@ -6859,6 +6829,8 @@ var author$project$Blogs$View$listBlogs = A2(
 						]))
 				]))
 		]));
+var elm$html$Html$blockquote = _VirtualDom_node('blockquote');
+var elm$html$Html$h6 = _VirtualDom_node('h6');
 var author$project$Blogs$Blog$View$Blog1$view = function () {
 	var pText = function (s) {
 		return A2(
@@ -6905,14 +6877,14 @@ var author$project$Blogs$Blog$View$Blog1$view = function () {
 								_List_fromArray(
 									[
 										A2(
-										elm$html$Html$p,
+										elm$html$Html$blockquote,
 										_List_fromArray(
 											[
 												elm$html$Html$Attributes$class('margin-right-ten text-extra-large')
 											]),
 										_List_fromArray(
 											[
-												elm$html$Html$text('[ This is my Ice Breaker speech in Toastmasters. An Ice Breaker speech is the first speech you would give to your club as a new member to let everyone know more about you. First time lucky - I won my first Best Speaker award with this speech. Time to read : 6 minutes. ]')
+												elm$html$Html$text('This is my Ice Breaker speech in Toastmasters. An Ice Breaker speech is the first speech you would give to your club as a new member to let everyone know more about you. First time lucky - I won my first Best Speaker award with this speech. Time to read : 6 minutes.')
 											]))
 									]))
 							])),
@@ -6928,20 +6900,49 @@ var author$project$Blogs$Blog$View$Blog1$view = function () {
 								elm$html$Html$div,
 								_List_fromArray(
 									[
-										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+										elm$html$Html$Attributes$class('center-col text-center col-md-12 col-sm-12')
 									]),
 								_List_fromArray(
 									[
 										A2(
-										elm$html$Html$p,
+										elm$html$Html$div,
 										_List_fromArray(
 											[
-												elm$html$Html$Attributes$class('text-large font-weight-600 text-black margin-three no-margin-top')
+												elm$html$Html$Attributes$class('subheader bg-white margin-three no-margin-top')
 											]),
 										_List_fromArray(
 											[
-												elm$html$Html$text('Game of Life  – by Stephen Cate')
-											])),
+												A2(
+												elm$html$Html$i,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('icon-hotairballoon large-icon')
+													]),
+												_List_Nil),
+												A2(
+												elm$html$Html$h1,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('Game of Life')
+													])),
+												A2(
+												elm$html$Html$h6,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('by Stephen Cate')
+													]))
+											]))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
 										pText('I was born and raised in Manila, Philippines. And back home, basketball was the national sport. It is part of the Filipino culture, so much so that tradition has it to pass the love of the game from one generation to the next. So my father did to us, what his father did – shared his love of the game with me and my brother!'),
 										pText('Mr. Toastmaster, fellow toastmasters, have you ever been talked into playing or following an official family sport when you were young? Did you have much choice?'),
 										pText('For me and my older brother - the default and only choice was basketball! '),
@@ -7010,14 +7011,14 @@ var author$project$Blogs$Blog$View$Blog2$view = function () {
 								_List_fromArray(
 									[
 										A2(
-										elm$html$Html$p,
+										elm$html$Html$blockquote,
 										_List_fromArray(
 											[
 												elm$html$Html$Attributes$class('margin-right-ten text-extra-large')
 											]),
 										_List_fromArray(
 											[
-												elm$html$Html$text('[ This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster have to give a speech twice then do an evaluation at the end for someone else\'s speech. This won me the Best Speaker award the second time, yey! :) ]')
+												elm$html$Html$text('This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster has to give a speech twice then do an evaluation at the end for someone else\'s speech. This won me the Best Speaker award the second time, yey! :)')
 											]))
 									]))
 							])),
@@ -7033,20 +7034,49 @@ var author$project$Blogs$Blog$View$Blog2$view = function () {
 								elm$html$Html$div,
 								_List_fromArray(
 									[
-										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+										elm$html$Html$Attributes$class('center-col text-center col-md-12 col-sm-12')
 									]),
 								_List_fromArray(
 									[
 										A2(
-										elm$html$Html$p,
+										elm$html$Html$div,
 										_List_fromArray(
 											[
-												elm$html$Html$Attributes$class('text-large font-weight-600 text-black margin-three no-margin-top')
+												elm$html$Html$Attributes$class('subheader bg-white margin-three no-margin-top')
 											]),
 										_List_fromArray(
 											[
-												elm$html$Html$text('Knocks on the Door by Stephen Cate')
-											])),
+												A2(
+												elm$html$Html$i,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('icon-gift large-icon')
+													]),
+												_List_Nil),
+												A2(
+												elm$html$Html$h1,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('Knocks on the Door')
+													])),
+												A2(
+												elm$html$Html$h6,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('by Stephen Cate')
+													]))
+											]))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
 										pText('I have lost count of how many chances I blew, and how many opportunities I failed to make the most of throughout my life. But I sure do remember a few times when something unexpected stumbled upon me and I made it count.'),
 										pText('Mr. Toastmaster, ladies and gentlemen, how many times have you heard an unexpected opportunity knock on the door that you were not ready for? How many times have you faced them? How much of them have you ignored?'),
 										pText('I believe that it takes courage and faith to face the unexpected. We don\'t always get what we want. And sadly, we don\'t always get what we deserve. But what is important is that from time to time, we stumble upon our reward just by pushing through.'),
@@ -7068,12 +7098,279 @@ var author$project$Blogs$Blog$View$Blog2$view = function () {
 					]))
 			]));
 }();
+var author$project$Blogs$Blog$View$Blog3$view = function () {
+	var pText = function (s) {
+		return A2(
+			elm$html$Html$p,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('text-med')
+				]),
+			_List_fromArray(
+				[
+					elm$html$Html$text(s)
+				]));
+	};
+	return A2(
+		elm$html$Html$section,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('blog-full-width-section wow fadeIn')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$div,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('container')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('row')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$blockquote,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('margin-right-ten text-extra-large')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('My 3rd speech in Toastmasters. The goal for this is to incorporate the feedback from the previous speech. The last feedback I got was to draw the audience in my story through eye contact. Seemed like the story and the goal have hit the mark - Best Speech for the night, horaay! :) Time to read: ~7 minutes')
+											]))
+									]))
+							])),
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('row')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('center-col text-center col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$div,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('subheader bg-white margin-three no-margin-top')
+											]),
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$i,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('icon-bike large-icon')
+													]),
+												_List_Nil),
+												A2(
+												elm$html$Html$h1,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('Legacy')
+													])),
+												A2(
+												elm$html$Html$h6,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('by Stephen Cate')
+													]))
+											]))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										pText('Let me start with an apology - I am sorry because I had to tell you about the fact that when I was in high school, I graduated distinguished with academic honours. Upon finishing my senior year, I have passed admission exams in all the top four universities in the Philippines. On my rookie year of work, I had already been promoted to handle a team of more experienced professionals than myself. And to secure my skilled migrant visa to Australia, I have perfected my International English proficiency exam in 2 categories - listening and reading – on my first and only attempt. The list goes on, but before someone kicks me off the stage, let me just stop myself right there.'),
+										pText('Mr. Toastmaster, ladies and gentlemen, hearing someone talk about their accomplishments could be rather annoying, isn\'t it?! Specially if you did not ask, and because quite frankly, because you could not care any less.'),
+										pText('I have come to realise this, the only person who cares the most about what I have accomplished is myself. '),
+										pText('Because at some point in my life, I have established an important and significant goal. I have endeavoured to pursue that goal, setting my aim, I have paid my dues, done my work and persevered until I finally had that which I longed for. I have achieved the prize!'),
+										pText('And yet, no one cares as much to hear what I have achieved.'),
+										pText('Because in reality, what I have accomplished, the medals and badges that I have put on myself, having all these accolades, does not benefit anyone. Hearing about what they are serves little to no purpose to another soul.'),
+										pText('And so, I came to believe that what we have accomplished is not at all that important. What is truly important is firstly - why we did what we did; and second, what we have become out of our pursuits.'),
+										pText('The fact that I have been an academic achiever at high school, being recognised by my teachers means nothing since the day I finished school and have inevitably faced the dreaded boss. But let me tell you why I did it. It is because my family didn\'t have much growing up, I was told from a young age that doing well in school is my only ticket to a better life. And because I was not inherently smart, I had to really compensate with my hustle. From then on, I have learned the value of solid hard work.'),
+										pText('The fact that I have passed admission tests in the top four universities in the Philippines does not matter when I could only study at one. But I can tell you that because no one in my whole family has ever been admitted to these top schools, I was scared. I thought I would not measure up, that I did not have it in me, that I was a long shot from the most crucial step towards the dream life and all my hard work would have been in vein. Because of that, I have learned not to just wait for an opportunity but to pursue them and make the most of each and everyone like my life depended on it. Because it did.'),
+										pText('If we can all but tell someone our reasons why we did what we did instead of what we did, then they would have walked through the journey with us. They would see the beauty in the rubble, as they dust off the dirt and uncover our effort’s true value.'),
+										pText('The fact that I have been promoted to handle a team of more experienced professionals at my first year of work, you could imagine how a terrible newbie boss I have been. But I can tell you that after finishing my studies, I could only think of wanting to succeed so I can give back to my mother for putting me to school despite her odds as a single parent of three. And because of that, I had a taste of what was possible for me in the real world through sheer will and determination.'),
+										pText('Lastly, the fact that I have perfected my International English proficiency exam in two out of the four modules on my first sitting, does not hold any weight now that I am in a country where English is the first language. But I can tell you how the journey to secure a piece of paper, a visa, that ticket to be here has been fraught with far too many obstacles, years of tirelessly waiting and countless sacrifices financially and emotionally.  I could not have afforded a retake. Because of the experience, I came here hungry – hungry to make the most of life for me and my young family.'),
+										pText('Ladies and gentlemen, how about you? Why did you reach for those shining moments in your life? How did it shape you and mold you to become the very best version of who you are, now?'),
+										pText('Mr. Toastmaster...')
+									]))
+							]))
+					]))
+			]));
+}();
+var author$project$Blogs$Blog$View$Blog4$view = function () {
+	var pText = function (s) {
+		return A2(
+			elm$html$Html$p,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('text-med')
+				]),
+			_List_fromArray(
+				[
+					elm$html$Html$text(s)
+				]));
+	};
+	return A2(
+		elm$html$Html$section,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('blog-full-width-section wow fadeIn')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$div,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('container')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('row')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$blockquote,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('margin-right-ten text-extra-large')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('I wrote this thinking about by my wife\'s near-death experience. I haven\'t presented this yet to the club so no idea yet if the story lands. But I\'m really keen if the structure of the story holds and I look forward to presenting it.')
+											]))
+									]))
+							])),
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('row')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('center-col text-center col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$div,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('subheader bg-white margin-three no-margin-top')
+											]),
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$i,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('icon-caution large-icon')
+													]),
+												_List_Nil),
+												A2(
+												elm$html$Html$h1,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('Assurance')
+													])),
+												A2(
+												elm$html$Html$h6,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('by Stephen Cate')
+													]))
+											]))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-12 col-sm-12')
+									]),
+								_List_fromArray(
+									[
+										pText('Hurling at speeds over 100 km per hour, coming towards her while travelling the wrong way on the wrong side of the freeway - death was a mere meter away as it came passing by. This happened to my wife on her way home from an otherwise ordinary day at work.'),
+										pText('It was just two faint headlights coming from nowhere - that\'s all she saw in a moments time that could have spelled the difference between life or death for my wife.'),
+										pText('Mr. Toastmaster, ladies and gentlemen, have you or a loved one ever experienced a close call? Did you feel that cold shiver running down your body? '),
+										pText('My wife came home trembling and quite shaken that night. It took a little while for her to catch her breath. As she told me of what happened, I felt those cold shivers all over my body. I was first furious about that reckless driver. But at the same time, I couldn\'t have been more grateful because right in front of me is my wife, that although shaken, is alive and well.'),
+										pText('But even after a couple of hours of having talked through the incident, me and my wife did could not sleep. While the close call had come to pass, the thought that life could be taken in any instant, just like that, have kept me and my wife wide awake. And the one and only thought left lingering in our minds was – what would have happened to our daughters should something unexpected befall  either me or my wife?'),
+										pText('So the next day, we did the most logical thing to do after a near death experience – we shopped around for life insurance! We were keen of course for any buy 1 take one deals. But i was surprised not to find any. Apparently, the best deals you would get with life and accidental covers are the bonus extras – ‘sign up now and you’ll get $15000 worth of funeral services free’ Now that is what really resting in peace means.'),
+										pText('We did learn and realise a few but vital lessons from that night. One of them is definitely the value of life insurance and how to score the best deals! But more importantly, between me and my wife, we have come to our senses on what is truly, the most important thing in our lives.'),
+										pText('We came to realise that while we have been predominantly been spending our time and energy on making sure all our bills gets paid, and while we unconsciously devote ourselves to doing the extra miles at our jobs, and while we relentlessly strive to attain more and more for ourselves and the family – we have been too busy looking too far ahead when our most important focus, the very reason we do all the things we do, are literally less than a feet away. (Because the whole family cosleeps in a double sized bed, we sleep quite snugged and curled together)'),
+										pText('Ladies and gentlemen, life is fragile. None of us will ever know when our time is up or when that close call comes close enough. But we don\'t have to wait until then, for us to start focusing on what is the most important thing in our lives.'),
+										pText('What\'s more, I came to realise, we don’t need life insurance as much as we need life assurance. '),
+										pText('Because while insurances work on the possibilities, the odds of something happening before it goes to work, assurances are guaranteed, they work with absolute certainty not probability.'),
+										pText('But the big difference between life insurance and life assurance is the cost. Life insurances can be bought, and surely everyone can haggle for a sweet life plus extras deal. But life assurances are something we all need to work on every single day, deliberately and without fail.'),
+										pText('For me and my wife, life insurance is about $50 bucks a month – and yes that had all the extras. But assuring that our daughters are taken care off long after we are gone meant we deliberately spend our time and energy everyday to mold them the best way we can so they can grow up as independent, responsible and caring adults who can look after eachother.'),
+										pText('Ladies and gentlemen, we all have that something or someone who is the most important in our lives. Let us not wait for a close call to happen before we realise that too late. Let us make the conscious effort not just to be insured but assured that when its time to meet our maker we leave it all with our hands and our pockets empty so that they may live on towards a brighter future.'),
+										pText('Mr. Toastmaster...')
+									]))
+							]))
+					]))
+			]));
+}();
 var author$project$Blogs$View$readBlog = function (blogId) {
 	switch (blogId) {
 		case 1:
 			return author$project$Blogs$Blog$View$Blog1$view;
 		case 2:
 			return author$project$Blogs$Blog$View$Blog2$view;
+		case 3:
+			return author$project$Blogs$Blog$View$Blog3$view;
+		case 4:
+			return author$project$Blogs$Blog$View$Blog4$view;
 		default:
 			return author$project$Blogs$Blog$View$Blog1$view;
 	}
