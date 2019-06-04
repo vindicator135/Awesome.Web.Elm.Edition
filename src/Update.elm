@@ -12,9 +12,6 @@ import Blogs.Update as Blogs
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    let
-        _ = Debug.log "update" ( msg, model )
-    in
     case msg of
         BlogsMsg blogsMsg ->
             let

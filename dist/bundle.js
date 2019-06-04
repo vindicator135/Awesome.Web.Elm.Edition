@@ -6023,10 +6023,6 @@ var elm$url$Url$toString = function (url) {
 };
 var author$project$Update$update = F2(
 	function (msg, model) {
-		var _n0 = A2(
-			elm$core$Debug$log,
-			'update',
-			_Utils_Tuple2(msg, model));
 		switch (msg.$) {
 			case 'BlogsMsg':
 				var blogsMsg = msg.a;
@@ -7402,14 +7398,18 @@ var author$project$Blogs$View$view = function (model) {
 var author$project$Message$BlogsMsg = function (a) {
 	return {$: 'BlogsMsg', a: a};
 };
+var elm$html$Html$button = _VirtualDom_node('button');
 var elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
 var elm$html$Html$map = elm$virtual_dom$VirtualDom$map;
+var elm$html$Html$nav = _VirtualDom_node('nav');
+var elm$html$Html$Attributes$type_ = elm$html$Html$Attributes$stringProperty('type');
 var author$project$View$contents = function (model) {
 	var header = A2(
-		elm$html$Html$div,
+		elm$html$Html$nav,
 		_List_fromArray(
 			[
-				elm$html$Html$Attributes$class('container')
+				elm$html$Html$Attributes$class('navbar navbar-default navbar-fixed-top nav-transparent overlay-nav sticky-nav nav-border-bottom no-transition'),
+				A2(elm$html$Html$Attributes$attribute, 'role', 'navigation')
 			]),
 		_List_fromArray(
 			[
@@ -7417,7 +7417,7 @@ var author$project$View$contents = function (model) {
 				elm$html$Html$div,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('row')
+						elm$html$Html$Attributes$class('container')
 					]),
 				_List_fromArray(
 					[
@@ -7425,7 +7425,7 @@ var author$project$View$contents = function (model) {
 						elm$html$Html$div,
 						_List_fromArray(
 							[
-								elm$html$Html$Attributes$class('col-sm-6')
+								elm$html$Html$Attributes$class('row')
 							]),
 						_List_fromArray(
 							[
@@ -7433,17 +7433,148 @@ var author$project$View$contents = function (model) {
 								elm$html$Html$div,
 								_List_fromArray(
 									[
-										elm$html$Html$Attributes$class('logo-image-300w-102h mt-3 mb-3')
+										elm$html$Html$Attributes$class('col-md-3 col-sm-3 col-xs-6')
 									]),
-								_List_Nil)
-							])),
-						A2(
-						elm$html$Html$div,
-						_List_fromArray(
-							[
-								elm$html$Html$Attributes$class('col-sm-6')
-							]),
-						_List_Nil)
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$a,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('logo-light'),
+												elm$html$Html$Attributes$href('#/blogs')
+											]),
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$img,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$alt(''),
+														elm$html$Html$Attributes$class('logo'),
+														elm$html$Html$Attributes$src('images/logo-light.png')
+													]),
+												_List_Nil)
+											])),
+										A2(
+										elm$html$Html$a,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('logo-dark'),
+												elm$html$Html$Attributes$href('#/blogs')
+											]),
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$img,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$alt(''),
+														elm$html$Html$Attributes$class('logo'),
+														elm$html$Html$Attributes$src('images/logo-light.png')
+													]),
+												_List_Nil)
+											]))
+									])),
+								elm$html$Html$text('                    '),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('navbar-header')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('navbar-toggle'),
+												A2(elm$html$Html$Attributes$attribute, 'data-target', '.navbar-collapse'),
+												A2(elm$html$Html$Attributes$attribute, 'data-toggle', 'collapse'),
+												elm$html$Html$Attributes$type_('button')
+											]),
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$span,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('sr-only')
+													]),
+												_List_fromArray(
+													[
+														elm$html$Html$text('Toggle navigation')
+													])),
+												A2(
+												elm$html$Html$span,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('icon-bar')
+													]),
+												_List_Nil),
+												A2(
+												elm$html$Html$span,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('icon-bar')
+													]),
+												_List_Nil),
+												A2(
+												elm$html$Html$span,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('icon-bar')
+													]),
+												_List_Nil)
+											]))
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('col-md-9 text-right')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$div,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('navbar-collapse collapse')
+											]),
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$ul,
+												_List_fromArray(
+													[
+														elm$html$Html$Attributes$class('nav navbar-nav navbar-right')
+													]),
+												_List_fromArray(
+													[
+														A2(
+														elm$html$Html$li,
+														_List_Nil,
+														_List_fromArray(
+															[
+																A2(
+																elm$html$Html$a,
+																_List_fromArray(
+																	[
+																		elm$html$Html$Attributes$class('inner-link'),
+																		elm$html$Html$Attributes$href('#/blogs')
+																	]),
+																_List_fromArray(
+																	[
+																		elm$html$Html$text('Blogs')
+																	]))
+															]))
+													])),
+												elm$html$Html$text('                        ')
+											]))
+									]))
+							]))
 					]))
 			]));
 	var body = function () {
