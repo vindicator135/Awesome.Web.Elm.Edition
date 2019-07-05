@@ -1,7 +1,8 @@
 module Blogs.Blog.View.Blog2 exposing (view)
 
-import Html exposing (Html, section, div, text, p, i, h1, h6, blockquote)
+import Html exposing (Html, blockquote, div, h1, h6, i, p, section, text)
 import Html.Attributes exposing (class)
+
 
 view : Html msg
 view =
@@ -9,23 +10,23 @@ view =
         pText s =
             p [ class "text-med" ] [ text s ]
     in
-    section [ class "blog-full-width-section wow fadeIn"] 
-        [ div [ class "container"] 
-            [ div [ class "row" ] 
-                [ div [ class "col-md-12 col-sm-12"]
-                    [ blockquote [ class "margin-right-ten text-extra-large"] 
+    section [ class "blog-full-width-section wow fadeIn" ]
+        [ div [ class "container" ]
+            [ div [ class "row" ]
+                [ div [ class "col-md-12 col-sm-12" ]
+                    [ blockquote [ class "margin-right-ten text-extra-large" ]
                         [ text "This is my second speech in Toastmasters. I did this as part of the Presentation Mastery learning pathway where a Toastmaster has to give a speech twice then do an evaluation at the end for someone else's speech. This won me the Best Speaker award the second time, yey! :)" ]
                     ]
                 ]
-            , div [ class "row" ] 
-                [ div [ class "center-col text-center col-md-12 col-sm-12"] 
-                    [ div [ class "subheader bg-white margin-three no-margin-top"]
-                        [ i [ class "icon-gift large-icon"] []
+            , div [ class "row" ]
+                [ div [ class "center-col text-center col-md-12 col-sm-12" ]
+                    [ div [ class "subheader bg-white margin-three no-margin-top" ]
+                        [ i [ class "icon-gift large-icon" ] []
                         , h1 [] [ text "Knocks on the Door" ]
                         , h6 [] [ text "by Stephen Cate" ]
                         ]
                     ]
-                , div [ class "col-md-12 col-sm-12"]
+                , div [ class "col-md-12 col-sm-12" ]
                     [ pText <| "I have lost count of how many chances I blew, and how many opportunities I failed to make the most of throughout my life. But I sure do remember a few times when something unexpected stumbled upon me and I made it count."
                     , pText <| "Mr. Toastmaster, ladies and gentlemen, how many times have you heard an unexpected opportunity knock on the door that you were not ready for? How many times have you faced them? How much of them have you ignored?"
                     , pText <| "I believe that it takes courage and faith to face the unexpected. We don't always get what we want. And sadly, we don't always get what we deserve. But what is important is that from time to time, we stumble upon our reward just by pushing through."

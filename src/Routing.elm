@@ -1,7 +1,7 @@
-module Routing exposing (Route(..), matchers, fromFragment, parseUrl)
+module Routing exposing (Route(..), fromFragment, matchers, parseUrl)
 
-import Url.Parser as Parser exposing (map, (</>), Parser, oneOf, s, string, int, top)
 import Url exposing (Url)
+import Url.Parser as Parser exposing ((</>), Parser, int, map, oneOf, s, string, top)
 
 
 type Route
@@ -31,6 +31,6 @@ parseUrl url =
 fromFragment : Url -> Url
 fromFragment url =
     { url
-        | path = (Maybe.withDefault "" url.fragment)
+        | path = Maybe.withDefault "" url.fragment
         , fragment = Nothing
     }

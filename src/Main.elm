@@ -1,11 +1,11 @@
-module Main exposing (..)
+module Main exposing (main)
 
-import Init exposing (init)
-import Model exposing (Model)
-import View exposing (view)
-import Update exposing (update)
-import Message exposing (Msg(..))
 import Browser exposing (..)
+import Init exposing (init)
+import Message exposing (Msg(..))
+import Model exposing (Model)
+import Update exposing (update)
+import View exposing (view)
 
 
 main : Program () Model Msg

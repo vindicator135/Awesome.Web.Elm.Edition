@@ -1,25 +1,28 @@
 module Init exposing (init)
 
+import Blogs.Model as Blogs
+import Browser.Navigation exposing (Key)
 import Message exposing (Msg(..))
 import Model exposing (Model, PageState(..))
-import Blogs.Model as Blogs
-import Url exposing (Url)
 import Routing exposing (Route(..), parseUrl)
-import Browser.Navigation exposing (Key)
+import Url exposing (Url)
 
 
 init : Url -> Key -> ( Model, Cmd Msg )
 init url key =
     let
-        (pageState, blogs) =
+        ( pageState, blogs ) =
             case parseUrl url of
                 BlogEntry blogId ->
-                    (Loaded, Blogs.BlogEntryView blogId)
-                BlogList ->
-                    (Loaded, Blogs.ListView)
-                NotFound -> 
-                    (Error "Page not found", Blogs.NotFound)
+                    ( Loaded, Blogs.BlogEntryView blogId )
 
-        _ = Debug.log "init" (url)
+                BlogList ->
+                    ( Loaded, Blogs.ListView )
+
+                NotFound ->
+                    ( Error "Page not found", Blogs.NotFound )
+
+        _ =
+            Debug.log "init" url
     in
     ( Model key pageState blogs, Cmd.none )

@@ -1,10 +1,10 @@
 module Model exposing (Model, PageState(..))
 
-import Message exposing (Msg(..))
 import Blogs.Model as Blogs
-import Url exposing (Url)
-import Routing exposing (Route(..), parseUrl)
 import Browser.Navigation exposing (Key)
+import Message exposing (Msg(..))
+import Routing exposing (Route(..), parseUrl)
+import Url exposing (Url)
 
 
 type alias Model =
@@ -14,8 +14,7 @@ type alias Model =
     }
 
 
-type PageState =
-    Loading
+type PageState
+    = Loading
     | Loaded
     | Error String
-

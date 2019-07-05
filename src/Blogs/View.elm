@@ -1,16 +1,17 @@
 module Blogs.View exposing (view)
 
-import Html exposing (Html, div, section, h1, text, span, ul, li, a, text, img, i, p)
-import Html.Attributes exposing (attribute, property, class, style, href, alt, src)
-import Json.Encode exposing (string)
-import Blogs.Message exposing (Msg(..))
-import Blogs.Model exposing (Model, ViewState(..))
 import Blogs.Blog.View.Blog1 as Blog1
 import Blogs.Blog.View.Blog2 as Blog2
 import Blogs.Blog.View.Blog3 as Blog3
 import Blogs.Blog.View.Blog4 as Blog4
-import Types.Alias exposing (BlogId)
+import Blogs.Message exposing (Msg(..))
+import Blogs.Model exposing (Model, ViewState(..))
 import Error.View as Error
+import Html exposing (Html, a, div, h1, i, img, li, p, section, span, text, ul)
+import Html.Attributes exposing (alt, attribute, class, href, property, src, style)
+import Json.Encode exposing (string)
+import Types.Alias exposing (BlogId)
+
 
 view : Model -> List (Html Msg)
 view model =
@@ -19,14 +20,17 @@ view model =
             case model of
                 ListView ->
                     listBlogs
+
                 BlogEntryView blogId ->
                     readBlog blogId
+
                 NotFound ->
                     Error.view "Not found"
     in
-        [ blogsHeader
-        , body
-        ]
+    [ blogsHeader
+    , body
+    ]
+
 
 blogsHeader : Html Msg
 blogsHeader =
@@ -36,9 +40,9 @@ blogsHeader =
                 [ div [ class "col-md-8 col-sm-12 wow fadeInUp", attribute "data-wow-duration" "300ms" ]
                     [ h1 [ class "black-text" ]
                         [ text "A Journey To Awesome" ]
-                    , span [ class "xs-display-none" ] 
+                    , span [ class "xs-display-none" ]
                         [ text "Toastmaster speeches: My thoughts on life, family and everything in between..." ]
-                    , div [ class "separator-line margin-three bg-black no-margin-lr sm-margin-top-three sm-margin-bottom-three no-margin-bottom xs-display-none"] 
+                    , div [ class "separator-line margin-three bg-black no-margin-lr sm-margin-top-three sm-margin-bottom-three no-margin-bottom xs-display-none" ]
                         []
                     ]
                 , div [ class "col-md-4 col-sm-12 breadcrumb text-uppercase wow fadeInUp xs-display-none", attribute "data-wow-duration" "600ms" ]
@@ -58,14 +62,24 @@ blogsHeader =
             ]
         ]
 
+
 readBlog : BlogId -> Html Msg
 readBlog blogId =
     case blogId of
-        1 -> Blog1.view
-        2 -> Blog2.view
-        3 -> Blog3.view
-        4 -> Blog4.view
-        _ -> Blog1.view
+        1 ->
+            Blog1.view
+
+        2 ->
+            Blog2.view
+
+        3 ->
+            Blog3.view
+
+        4 ->
+            Blog4.view
+
+        _ ->
+            Blog1.view
 
 
 listBlogs : Html Msg
@@ -128,7 +142,7 @@ listBlogs =
                             ]
                         , div [ class "blog-short-description" ]
                             [ p [] [ text "This is my second speech in TM. I did this as part of the Presentation Mastery learning pathway where a Toastmaster has to give a speech twice then do an evaluation at the end for someone else's speech. This won me the Best Speaker award the second time - so happy! yey! :)" ]
-                            , p [] [ text "Time to read : ~7 minutes"]
+                            , p [] [ text "Time to read : ~7 minutes" ]
                             ]
                         , div [ class "separator-line bg-black no-margin-lr" ]
                             []
@@ -146,7 +160,7 @@ listBlogs =
                             ]
                         ]
                     ]
-                ,  text "                    "
+                , text "                    "
                 , div [ class "col-md-6 col-sm-6 col-xs-6 blog-listing" ]
                     [ div [ class "blog-image" ]
                         [ a [ href "#/blogs/3" ]
@@ -201,8 +215,8 @@ listBlogs =
                                 [ text "Assurance" ]
                             ]
                         , div [ class "blog-short-description" ]
-                            [ p [] [text "I wrote this thinking about by my wife's near-death experience. I haven't presented this yet to the club so no idea yet if the story lands. But I'm really keen if the structure of the story holds and I look forward to presenting it." ]
-                            , p [] [text "Time to read: ~7 minutes"]
+                            [ p [] [ text "I wrote this thinking about by my wife's near-death experience. I haven't presented this yet to the club so no idea yet if the story lands. But I'm really keen if the structure of the story holds and I look forward to presenting it." ]
+                            , p [] [ text "Time to read: ~7 minutes" ]
                             ]
                         , div [ class "separator-line bg-black no-margin-lr" ]
                             []

@@ -1,7 +1,8 @@
 module Blogs.Blog.View.Blog1 exposing (view)
 
-import Html exposing (Html, section, div, text, p, i, h1, h6, blockquote)
+import Html exposing (Html, blockquote, div, h1, h6, i, p, section, text)
 import Html.Attributes exposing (class)
+
 
 view : Html msg
 view =
@@ -9,25 +10,23 @@ view =
         pText s =
             p [ class "text-med" ] [ text s ]
     in
-    section [ class "blog-full-width-section wow fadeIn"] 
-        [ div [ class "container"] 
-            [ div [ class "row" ] 
-                [ div [ class "col-md-12 col-sm-12"]
-                    [ blockquote [ class "margin-right-ten text-extra-large"] 
+    section [ class "blog-full-width-section wow fadeIn" ]
+        [ div [ class "container" ]
+            [ div [ class "row" ]
+                [ div [ class "col-md-12 col-sm-12" ]
+                    [ blockquote [ class "margin-right-ten text-extra-large" ]
                         [ text "This is my Ice Breaker speech in Toastmasters. An Ice Breaker speech is the first speech you would give to your club as a new member to let everyone know more about you. First time lucky - I won my first Best Speaker award with this speech. Time to read : 6 minutes." ]
                     ]
-                ] 
-            , div [ class "row" ] 
-                [ div [ class "center-col text-center col-md-12 col-sm-12"] 
-                    [ div [ class "subheader bg-white margin-three no-margin-top"]
-                        [ i [ class "icon-hotairballoon large-icon"] []
+                , div [ class "center-col text-center col-md-12 col-sm-12" ]
+                    [ div [ class "subheader bg-white margin-three no-margin-top" ]
+                        [ i [ class "icon-hotairballoon large-icon" ] []
                         , h1 [] [ text "Game of Life" ]
                         , h6 [] [ text "by Stephen Cate" ]
                         ]
                     ]
-                , div [ class "col-md-12 col-sm-12"] 
+                , div [ class "col-md-12 col-sm-12" ]
                     [ pText <| "I was born and raised in Manila, Philippines. And back home, basketball was the national sport. It is part of the Filipino culture, so much so that tradition has it to pass the love of the game from one generation to the next. So my father did to us, what his father did – shared his love of the game with me and my brother!"
-                    , pText <| "Mr. Toastmaster, fellow toastmasters, have you ever been talked into playing or following an official family sport when you were young? Did you have much choice?" 
+                    , pText <| "Mr. Toastmaster, fellow toastmasters, have you ever been talked into playing or following an official family sport when you were young? Did you have much choice?"
                     , pText <| "For me and my older brother - the default and only choice was basketball! "
                     , pText <| "From an early age, my father wanted to polish his future basketball talents – me and my bro. So when I was young, even if we didn’t have much money to go around, he made it a point that me and my brother have a home court advantage. With scraps of plywood and a dusty old ring, he built us a makeshift basketball court in our very own backyard. "
                     , pText <| "Our home court was hung on a tree, a fairly tall one I should say. Because for some reason, I rarely ever made a shot in that court! Although it’s safe to say - I’m not really a natural for the sport. As a kid, I was skinny, I was short, and with all my strength, I can manage to jump a leaping 6-inches off the ground! Proud to say that at least that a little higher than a soda can!"

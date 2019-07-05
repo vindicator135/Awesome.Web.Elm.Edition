@@ -6882,16 +6882,7 @@ var author$project$Blogs$Blog$View$Blog1$view = function () {
 											[
 												elm$html$Html$text('This is my Ice Breaker speech in Toastmasters. An Ice Breaker speech is the first speech you would give to your club as a new member to let everyone know more about you. First time lucky - I won my first Best Speaker award with this speech. Time to read : 6 minutes.')
 											]))
-									]))
-							])),
-						A2(
-						elm$html$Html$div,
-						_List_fromArray(
-							[
-								elm$html$Html$Attributes$class('row')
-							]),
-						_List_fromArray(
-							[
+									])),
 								A2(
 								elm$html$Html$div,
 								_List_fromArray(
@@ -7435,47 +7426,7 @@ var author$project$View$contents = function (model) {
 									[
 										elm$html$Html$Attributes$class('col-md-3 col-sm-3 col-xs-6')
 									]),
-								_List_fromArray(
-									[
-										A2(
-										elm$html$Html$a,
-										_List_fromArray(
-											[
-												elm$html$Html$Attributes$class('logo-light'),
-												elm$html$Html$Attributes$href('#/blogs')
-											]),
-										_List_fromArray(
-											[
-												A2(
-												elm$html$Html$img,
-												_List_fromArray(
-													[
-														elm$html$Html$Attributes$alt(''),
-														elm$html$Html$Attributes$class('logo'),
-														elm$html$Html$Attributes$src('images/logo-light.png')
-													]),
-												_List_Nil)
-											])),
-										A2(
-										elm$html$Html$a,
-										_List_fromArray(
-											[
-												elm$html$Html$Attributes$class('logo-dark'),
-												elm$html$Html$Attributes$href('#/blogs')
-											]),
-										_List_fromArray(
-											[
-												A2(
-												elm$html$Html$img,
-												_List_fromArray(
-													[
-														elm$html$Html$Attributes$alt(''),
-														elm$html$Html$Attributes$class('logo'),
-														elm$html$Html$Attributes$src('images/logo-light.png')
-													]),
-												_List_Nil)
-											]))
-									])),
+								_List_Nil),
 								elm$html$Html$text('                    '),
 								A2(
 								elm$html$Html$div,

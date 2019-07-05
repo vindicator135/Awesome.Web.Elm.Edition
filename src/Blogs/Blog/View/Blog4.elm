@@ -1,7 +1,8 @@
 module Blogs.Blog.View.Blog4 exposing (view)
 
-import Html exposing (Html, section, div, text, p, i, h1, h6, blockquote)
+import Html exposing (Html, blockquote, div, h1, h6, i, p, section, text)
 import Html.Attributes exposing (class)
+
 
 view : Html msg
 view =
@@ -9,23 +10,23 @@ view =
         pText s =
             p [ class "text-med" ] [ text s ]
     in
-    section [ class "blog-full-width-section wow fadeIn"] 
-        [ div [ class "container"] 
-            [ div [ class "row" ] 
-                [ div [ class "col-md-12 col-sm-12"]
-                    [ blockquote [ class "margin-right-ten text-extra-large"] 
+    section [ class "blog-full-width-section wow fadeIn" ]
+        [ div [ class "container" ]
+            [ div [ class "row" ]
+                [ div [ class "col-md-12 col-sm-12" ]
+                    [ blockquote [ class "margin-right-ten text-extra-large" ]
                         [ text "I wrote this thinking about by my wife's near-death experience. I haven't presented this yet to the club so no idea yet if the story lands. But I'm really keen if the structure of the story holds and I look forward to presenting it." ]
                     ]
                 ]
-            , div [ class "row" ] 
-                [ div [ class "center-col text-center col-md-12 col-sm-12"] 
-                    [ div [ class "subheader bg-white margin-three no-margin-top"]
-                        [ i [ class "icon-caution large-icon"] []
+            , div [ class "row" ]
+                [ div [ class "center-col text-center col-md-12 col-sm-12" ]
+                    [ div [ class "subheader bg-white margin-three no-margin-top" ]
+                        [ i [ class "icon-caution large-icon" ] []
                         , h1 [] [ text "Assurance" ]
                         , h6 [] [ text "by Stephen Cate" ]
                         ]
                     ]
-                , div [ class "col-md-12 col-sm-12"]
+                , div [ class "col-md-12 col-sm-12" ]
                     [ pText <| "Hurling at speeds over 100 km per hour, coming towards her while travelling the wrong way on the wrong side of the freeway - death was a mere meter away as it came passing by. This happened to my wife on her way home from an otherwise ordinary day at work."
                     , pText <| "It was just two faint headlights coming from nowhere - that's all she saw in a moments time that could have spelled the difference between life or death for my wife."
                     , pText <| "Mr. Toastmaster, ladies and gentlemen, have you or a loved one ever experienced a close call? Did you feel that cold shiver running down your body? "

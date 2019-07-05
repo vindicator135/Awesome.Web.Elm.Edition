@@ -1,3 +1,5 @@
 module Types.Alias exposing (BlogId)
 
-type alias BlogId = Int
+
+type alias BlogId =
+    Int

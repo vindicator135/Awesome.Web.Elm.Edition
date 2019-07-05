@@ -1,12 +1,12 @@
 module View exposing (view)
 
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Model exposing (Model, PageState(..))
-import Message exposing (Msg(..))
 import Blogs.View as Blogs
 import Browser exposing (Document)
 import Error.View as Error
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Message exposing (Msg(..))
+import Model exposing (Model, PageState(..))
 
 
 view : Model -> Document Msg
@@ -17,6 +17,7 @@ view model =
         ]
     }
 
+
 contents : Model -> Html Msg
 contents model =
     let
@@ -25,15 +26,7 @@ contents model =
                 [ div [ class "container" ]
                     [ div [ class "row" ]
                         [ div [ class "col-md-3 col-sm-3 col-xs-6" ]
-                            [ a [ class "logo-light", href "#/blogs" ]
-                                [ img [ alt "", class "logo", src "images/logo-light.png" ]
-                                    []
-                                ]
-                            , a [ class "logo-dark", href "#/blogs" ]
-                                [ img [ alt "", class "logo", src "images/logo-light.png" ]
-                                    []
-                                ]
-                            ]
+                            []
                         , text "                    "
                         , div [ class "navbar-header" ]
                             [ button [ class "navbar-toggle", attribute "data-target" ".navbar-collapse", attribute "data-toggle" "collapse", type_ "button" ]
@@ -61,19 +54,20 @@ contents model =
                         ]
                     ]
                 ]
-        
-        body = 
+
+        body =
             case model.pageState of
                 Loading ->
                     [ div [] [ text "Still loading data" ] ]
 
                 Loaded ->
                     Blogs.view model.blogs
-                    |> List.map (Html.map BlogsMsg)
+                        |> List.map (Html.map BlogsMsg)
 
                 Error message ->
                     [ Error.view message ]
     in
-        div []
-            <| (header
-            :: body)
+    div [] <|
+        (header
+            :: body
+        )

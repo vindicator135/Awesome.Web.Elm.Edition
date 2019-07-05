@@ -7,7 +7,7 @@ import Html.Attributes exposing (..)
 view : Html msg
 view =
     div [ class "blog-details-text" ]
-        [ blockquote [] 
+        [ blockquote []
             [ text "Twenty years from now you will be more disappointed by the things you didn’t do than by the ones you did. So throw off the bowlines, sail away from the safe harbor, catch the trade winds in your sails. Explore. Dream. Discover."
             ]
         , footer [] [ text "Mark Twain" ]
@@ -15,40 +15,41 @@ view =
         , body
         ]
 
+
 body : Html msg
 body =
     div [ class "blog-details-text" ]
-        [ p [] 
-            [ span [ class "first-letter first-letter-light"] 
-                [ text "M"]
-            , text "igrating abroad maybe one of the most life-changing decisions to anyone making that leap. You literally have to carry your whole life on a couple of luggage bags wishing you could just take more with you, and for good cause - there is no turning back from this one, well at least not in the immediate and foreseeable future." 
+        [ p []
+            [ span [ class "first-letter first-letter-light" ]
+                [ text "M" ]
+            , text "igrating abroad maybe one of the most life-changing decisions to anyone making that leap. You literally have to carry your whole life on a couple of luggage bags wishing you could just take more with you, and for good cause - there is no turning back from this one, well at least not in the immediate and foreseeable future."
             ]
-        ,  p [] 
+        , p []
             [ text "Many of us leave never ever feeling that we are going to be ready for the long haul hiatus. Despite the preparation, anticipation, despidida's, and visits to Antipolo Church, we can only bring as much stuff that we hold dear. When you look at the things you pack, there's always that dilemma of leaving that d-day shirt/sando/short/brief that we've worn since childhood, those deeply sentimental artifacts that symbolizes bits and pieces of the life we're leaving behind."
             ]
-        , p [] 
-            [ text "This is the reality though and we all made our choice. There's been way too much emotions and money spent (or owed) that we simply must do what we ought to do. So, we pack our bags and go." 
+        , p []
+            [ text "This is the reality though and we all made our choice. There's been way too much emotions and money spent (or owed) that we simply must do what we ought to do. So, we pack our bags and go."
             ]
-        , div [ class "blog-image margin-eight" ] 
-            [ img [ src "/images/posts/passport-1920x1200.png" ] [] 
+        , div [ class "blog-image margin-eight" ]
+            [ img [ src "/images/posts/passport-1920x1200.png" ] []
             ]
-        , p [] 
-            [ text "In the dark and unknown universe waiting for you on the other side, wherever country you set out for, it's always good to get some insights from people who have been on a somewhat similar spot. Yup, you have not been alone in that feeling, my friend. Please know that I don't claim to be a pro giving rock solid advice that I'd go on a blood pact and bet on with my job. But its always good to put out some thought out there with the best intent, and I wish you the very best. So, here it is -" 
+        , p []
+            [ text "In the dark and unknown universe waiting for you on the other side, wherever country you set out for, it's always good to get some insights from people who have been on a somewhat similar spot. Yup, you have not been alone in that feeling, my friend. Please know that I don't claim to be a pro giving rock solid advice that I'd go on a blood pact and bet on with my job. But its always good to put out some thought out there with the best intent, and I wish you the very best. So, here it is -"
             ]
-        , h2 [ class "text-transform-none" ] 
+        , h2 [ class "text-transform-none" ]
             [ text "1. Create your own story, the one you'd like for yourself that you'd be happy to share to people."
             ]
         , br [] []
-        , p [] 
+        , p []
             [ text "When I came to Australia, I had been forewarned that I needed to leave not just my family, and not just my friends. I was told over and over that I also needed to leave my pride. As they said - 'Bawal ang ma-pride sa abroad. - A lot of anonymous people'"
             ]
-        , p [] 
+        , p []
             [ text "I was just shocked by the strong dogma against having that pride when you arrive as a migrant. While I barely knew anyone in this new country, the Kabayan's I've come to meet by chance have all been tamed to this defensive mentality - that notion that their isn't much out here and life's tough. Most are seeing the scarcity more than the opportunities available. For a fact, I must have heard so many stories of hard times, experienced by apparently everyone when they're starting out, that for the first few nights abroad, my best sleep was 2 hours."
             ]
-        , div [ class "blog-image margin-eight"] 
-            [ img [ src "/images/posts/footprint-1920x1200.png"] [] 
+        , div [ class "blog-image margin-eight" ]
+            [ img [ src "/images/posts/footprint-1920x1200.png" ] []
             ]
-        , p [] 
+        , p []
             [ text "I had those tales creeping in my mind and I started to worry more. The truth is, we are strongly moved by stories, specially those that we can see ourselves fit into. We identify ourselves closely to stories of people who we see ourselves being in the same position with. In my case, I was concerned to hear about how terribly difficult it was for new comers to find a job and get settled. Or, how some starters have been bouncing between any available odd jobs just to get by. I was beginning to see myself in that same situation, dreading the already monumental, if not impossible task ahead."
             ]
         , p []
@@ -57,27 +58,27 @@ body =
         , p []
             [ text "That encounter made a strong impact on me. It validated all the stories I have heard. It's all true. Life here is indeed tough and could even be punishing. But then, that moment made me realize that, really, you attract what you think. I have been thinking about the negativity for sometime and low and behold, a testament to that showed up to me. It made me wonder, what if, I started thinking the contrary? What if I thought differently and go the more positive route to be optimistic and hopeful instead? Will that attract me a different story for my own?"
             ]
-        , p [] 
+        , p []
             [ text "It didn't took me a long time to find out the answer for myself. When I started to think more positively about things and changing how I perceived my circumstance, I switched on to a nothing-to-lose mentality. I kept a guard at the thoughts entering my mind. It's like my brain always hosted a party and on that party with all my thoughts socializing together, there's just one rule: No Negatives allowed. I became more determined that I will have a better experience to tell for new starters. And I imagined being able to do what I am doing now, sharing you the kind of story I want. "
-            ] 
+            ]
         , p []
             [ text "I wasn't able to sleep well that very night. Because I was in a job-application frenzy. I didn't stop formatting my CV to the best my English could provide. Then, 3 days later, I got a job offer from a multi-national company, with a full-time permanent role, with above average pay for the same work I have been doing for years in the Philippines. I couldn't forget how I had my fist up in the air, clapping, a tear swelling up in my eye, in awe and amazement of His grace, just right after leaving the building of my new company."
             ]
         , p []
             [ text "I believed then, that you really need to see it clearly in your mind. Paint your own story before it actually happens and simply trust that it will."
             ]
-        , h2 [ class "text-transform-none" ] 
+        , h2 [ class "text-transform-none" ]
             [ text "2. Don't go on Cruise Control." ]
-        , p [] 
+        , p []
             [ text "If you share the life-abroad dream like me, then you would have been in leaps of joy in every step of that long journey. From the baby steps like finding out what requirements you need, gathering those requisites through requests countless submissions here and there, we all felt excited that bit by bit we are building the dream."
             ]
-        , p [] 
+        , p []
             [ text "I mean, who could forget the drama, and sometimes trauma of those silly English-Proficiency exams? (Yes, IELTS, I'm staring at you with angry eyes, and eye bags all over). Who was not logging in to the Migration website every day, if not by the hour, to check for the slightest changes in their application status? Who didn't lose focus at work while waiting and waiting and praying for a positive assessment on their skills or on their sponsorship? Who didn't go an a cleanse diet to not get deferred from the Health checks? In many ways, we've gone through different flavors of these things before we got to where we are. It wasn't something that we just said we want as a lot of other people do. It's something that we said we wanted and will do everything we can no matter what. And that, I think is what fundamentally makes us not just dreamers. We are dream-chasers!"
             ]
         , div [ class "blog-image margin-eight" ]
-            [ img [ src "/images/posts/cruisecontrol-1920x1200.png"] []
-            ]    
-        , p [] 
+            [ img [ src "/images/posts/cruisecontrol-1920x1200.png" ] []
+            ]
+        , p []
             [ text "What I did notice though, is that after being able to settle in and be in our new country, all of a sudden we get comfortable. Now, that is not a bad thing at all, since after all that's the point in seeking a better life abroad - to be comfortable. We want a comfortable life for ourselves and our families. We've gone through a lot, paid the price for being where we are and we deserve that much."
             ]
         , p []
@@ -92,14 +93,16 @@ body =
         , p []
             [ text "So my friend, start strong and keep your that steady pace. Pray harder than you think and don't shrink your dream to fit your life. Instead, keep on growing to fit your life into  your dreams. I wish you all the best!"
             ]
-        , blockquote [] 
-            [ p [] 
+        , blockquote []
+            [ p []
                 [ text "For God has not given us a spirit of fear, but of power and of love and of a sound mind."
                 ]
-            , footer [] [ text "2 Timothy 1:7" ] 
+            , footer [] [ text "2 Timothy 1:7" ]
             ]
         ]
-    
+
+
+
 -- {
 --     "PostId":1002,
 --     "TitleText": "A Couple of Tips When Migrating Abroad",

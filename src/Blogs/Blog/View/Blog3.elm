@@ -1,7 +1,8 @@
 module Blogs.Blog.View.Blog3 exposing (view)
 
-import Html exposing (Html, section, div, text, p, i, h1, h6, blockquote)
+import Html exposing (Html, blockquote, div, h1, h6, i, p, section, text)
 import Html.Attributes exposing (class)
+
 
 view : Html msg
 view =
@@ -9,23 +10,23 @@ view =
         pText s =
             p [ class "text-med" ] [ text s ]
     in
-    section [ class "blog-full-width-section wow fadeIn"] 
-        [ div [ class "container"] 
-            [ div [ class "row" ] 
-                [ div [ class "col-md-12 col-sm-12"]
-                    [ blockquote [ class "margin-right-ten text-extra-large"] 
+    section [ class "blog-full-width-section wow fadeIn" ]
+        [ div [ class "container" ]
+            [ div [ class "row" ]
+                [ div [ class "col-md-12 col-sm-12" ]
+                    [ blockquote [ class "margin-right-ten text-extra-large" ]
                         [ text "My 3rd speech in Toastmasters. The goal for this is to incorporate the feedback from the previous speech. The last feedback I got was to draw the audience in my story through eye contact. Seemed like the story and the goal have hit the mark - Best Speech for the night, horaay! :) Time to read: ~7 minutes" ]
                     ]
                 ]
-            , div [ class "row" ] 
-                [ div [ class "center-col text-center col-md-12 col-sm-12"] 
-                    [ div [ class "subheader bg-white margin-three no-margin-top"]
-                        [ i [ class "icon-bike large-icon"] []
+            , div [ class "row" ]
+                [ div [ class "center-col text-center col-md-12 col-sm-12" ]
+                    [ div [ class "subheader bg-white margin-three no-margin-top" ]
+                        [ i [ class "icon-bike large-icon" ] []
                         , h1 [] [ text "Legacy" ]
                         , h6 [] [ text "by Stephen Cate" ]
                         ]
                     ]
-                , div [ class "col-md-12 col-sm-12"]
+                , div [ class "col-md-12 col-sm-12" ]
                     [ pText <| "Let me start with an apology - I am sorry because I had to tell you about the fact that when I was in high school, I graduated distinguished with academic honours. Upon finishing my senior year, I have passed admission exams in all the top four universities in the Philippines. On my rookie year of work, I had already been promoted to handle a team of more experienced professionals than myself. And to secure my skilled migrant visa to Australia, I have perfected my International English proficiency exam in 2 categories - listening and reading – on my first and only attempt. The list goes on, but before someone kicks me off the stage, let me just stop myself right there."
                     , pText <| "Mr. Toastmaster, ladies and gentlemen, hearing someone talk about their accomplishments could be rather annoying, isn't it?! Specially if you did not ask, and because quite frankly, because you could not care any less."
                     , pText <| "I have come to realise this, the only person who cares the most about what I have accomplished is myself. "

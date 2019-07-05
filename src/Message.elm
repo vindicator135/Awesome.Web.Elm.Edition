@@ -1,8 +1,8 @@
 module Message exposing (Msg(..))
 
 import Blogs.Message as Blogs
-import Url exposing (Url)
 import Browser exposing (UrlRequest)
+import Url exposing (Url)
 
 
 type Msg
