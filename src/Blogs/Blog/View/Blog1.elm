@@ -1,17 +1,50 @@
 module Blogs.Blog.View.Blog1 exposing (view)
 
-import Html exposing (Html, blockquote, div, h1, h6, i, p, section, text)
-import Html.Attributes exposing (class)
+import Html exposing (Html, blockquote, div, h1, h6, i, p, section, text, img, h2, span, a)
+import Html.Attributes exposing (class, alt, src, href, attribute)
 
 
 
-view : Html msg
+view : List (Html msg)
 view =
     let
         pText s =
             p [ class "text-med" ] [ text s ]
     in
-    section [ class "blog-full-width-section wow fadeIn" ]
+    [ section [ class "wow fadeIn blog-single-full-width-header fix-background parallax-fix", attribute "style" "background: url('images/blue-sky-behind-basketball-net.jpg') 50% 0%; visibility: visible;" ]
+        [ div [ class "opacity-medium bg-black" ]
+            []
+        , div [ class "container" ]
+            [ div [ class "row" ]
+                [ div [ class "col-md-7 col-sm-8 position-relative full-width-headline text-center center-col" ]
+                    [ h2 [ class "white-text" ]
+                        [ span []
+                            [ text "The Game called Life" ]
+                        , text "from the Ice Breaker project"
+                        ]
+                    , text "                        "
+                    , div [ class "posted-by text-uppercase" ]
+                        [ text "Posted by "
+                        , a [ class "white-text", href "#/blogs/1" ]
+                            [ text "Stephen Cate" ]
+                        ]
+                    , div [ class "blog-date" ]
+                        [ text "17 April 2019 | "
+                        , a [ href "#/blogs/1" ]
+                            [ text "Life" ]
+                        , text ", "
+                        , a [ href "#/blogs/1" ]
+                            [ text "Basketball" ]
+                        , text ", "
+                        , a [ href "#/blogs/1" ]
+                            [ text "Family" ]
+                        ]
+                    , text "                    "
+                    ]
+                ]
+            ]
+        ]
+    , section [ class "blog-full-width-section wow fadeIn" ]
         [ div [ class "container" ]
             [ div [ class "row" ]
                 [ div [ class "col-md-12 col-sm-12" ]
@@ -47,3 +80,4 @@ view =
                 ]
             ]
         ]
+    ]

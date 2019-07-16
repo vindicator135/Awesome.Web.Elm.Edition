@@ -4,13 +4,13 @@ import Html exposing (Html, blockquote, div, h1, h6, i, p, section, text)
 import Html.Attributes exposing (class)
 
 
-view : Html msg
+view : List (Html msg)
 view =
     let
         pText s =
             p [ class "text-med" ] [ text s ]
     in
-    section [ class "blog-full-width-section wow fadeIn" ]
+    [ section [ class "blog-full-width-section wow fadeIn" ]
         [ div [ class "container" ]
             [ div [ class "row" ]
                 [ div [ class "col-md-12 col-sm-12" ]
@@ -45,3 +45,4 @@ view =
                 ]
             ]
         ]
+    ]

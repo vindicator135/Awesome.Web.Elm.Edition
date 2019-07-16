@@ -11,71 +11,22 @@ import Html exposing (Html, a, div, h1, i, img, li, p, section, span, text, ul, 
 import Html.Attributes exposing (alt, attribute, class, href, property, src, style, type_)
 import Json.Encode exposing (string)
 import Types.Alias exposing (BlogId)
+import Header.View as Header
 
 
 view : Model -> List (Html Msg)
 view model =
-    let
-        header =
-            nav [ class "navbar navbar-default navbar-fixed-top nav-transparent overlay-nav sticky-nav nav-border-bottom no-transition", attribute "role" "navigation" ]
-                [ div [ class "container" ]
-                    [ div [ class "row" ]
-                        [ div [ class "col-md-8 col-sm-3 col-xs-6 wow fadeInUp", attribute "data-wow-duration" "300ms" ]
-                            [ h1 [ class "black-text" ]
-                                [ text "A Journey To Awesome" ]
-                            , span [ class "xs-display-none" ]
-                                [ text "From noob public speaker all the way to the World Championship of Public Speaking...someday!" ]
-                            , div [ class "separator-line margin-three bg-black no-margin-lr sm-margin-top-three sm-margin-bottom-three no-margin-bottom xs-display-none" ]
-                                []
-                            ]
-                        , div [ class "navbar-header" ]
-                            [ button [ class "navbar-toggle", attribute "data-target" ".navbar-collapse", attribute "data-toggle" "collapse", type_ "button" ]
-                                [ span [ class "sr-only" ]
-                                    [ text "Toggle navigation" ]
-                                , span [ class "icon-bar" ]
-                                    []
-                                , span [ class "icon-bar" ]
-                                    []
-                                , span [ class "icon-bar" ]
-                                    []
-                                ]
-                            ]
-                        , div [ class "col-md-4 text-right" ]
-                            [ div [ class "navbar-collapse collapse" ]
-                                [ ul [ class "nav navbar-nav navbar-right" ]
-                                    [ li []
-                                        [ a [ class "inner-link", href "#/blogs" ]
-                                            [ text "Getting started with Toastmasters" ]
-                                        , a [ class "inner-link", href "#/blogs" ]
-                                            [ text "My progress" ]
-                                        , a [ class "inner-link", href "#/blogs" ]
-                                            [ text "My speeches" ]
-                                        ]
-                                    ]
-                                , text "                        "
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+    case model of
+        ListView ->
+            [ Header.lightView, listBlogs ]
 
-        body =
-            case model of
-                ListView ->
-                    listBlogs
+        BlogEntryView blogId ->
+            Header.darkView :: readBlog blogId
 
-                BlogEntryView blogId ->
-                    readBlog blogId
+        NotFound ->
+            [ Header.lightView, Error.view "Not found" ]
 
-                NotFound ->
-                    Error.view "Not found"
-    in
-    [ header
-    , body
-    ]
-
-
-readBlog : BlogId -> Html Msg
+readBlog : BlogId -> List (Html Msg)
 readBlog blogId =
     case blogId of
         1 ->
