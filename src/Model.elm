@@ -1,4 +1,4 @@
-module Model exposing (Model, PageState(..))
+module Model exposing (Model, PageState(..), DataState(..))
 
 import Blogs.Model as Blogs
 import Browser.Navigation exposing (Key)
@@ -10,7 +10,7 @@ import Url exposing (Url)
 type alias Model =
     { key : Key
     , pageState : PageState
-    , blogs : Blogs.Model
+    , dataState : DataState
     }
 
 
@@ -18,3 +18,8 @@ type PageState
     = Loading
     | Loaded
     | Error String
+
+
+type DataState
+    = BlogState Blogs.Model
+    | MainState

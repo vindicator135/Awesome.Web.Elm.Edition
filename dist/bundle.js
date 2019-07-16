@@ -4310,16 +4310,16 @@ var author$project$Blogs$Model$BlogEntryView = function (a) {
 	return {$: 'BlogEntryView', a: a};
 };
 var author$project$Blogs$Model$ListView = {$: 'ListView'};
-var author$project$Blogs$Model$NotFound = {$: 'NotFound'};
-var author$project$Model$Error = function (a) {
-	return {$: 'Error', a: a};
+var author$project$Model$BlogState = function (a) {
+	return {$: 'BlogState', a: a};
 };
 var author$project$Model$Loaded = {$: 'Loaded'};
+var author$project$Model$MainState = {$: 'MainState'};
 var author$project$Model$Model = F3(
-	function (key, pageState, blogs) {
-		return {blogs: blogs, key: key, pageState: pageState};
+	function (key, pageState, dataState) {
+		return {dataState: dataState, key: key, pageState: pageState};
 	});
-var author$project$Routing$NotFound = {$: 'NotFound'};
+var author$project$Routing$Main = {$: 'Main'};
 var elm$core$Maybe$Nothing = {$: 'Nothing'};
 var elm$core$Maybe$withDefault = F2(
 	function (_default, maybe) {
@@ -5336,10 +5336,9 @@ var author$project$Routing$parseUrl = function (url) {
 		var route = _n0.a;
 		return route;
 	} else {
-		return author$project$Routing$NotFound;
+		return author$project$Routing$Main;
 	}
 };
-var elm$core$Debug$log = _Debug_log;
 var elm$core$Basics$False = {$: 'False'};
 var elm$core$Basics$True = {$: 'True'};
 var elm$core$Result$isOk = function (result) {
@@ -5703,20 +5702,20 @@ var author$project$Init$init = F2(
 					var blogId = _n1.a;
 					return _Utils_Tuple2(
 						author$project$Model$Loaded,
-						author$project$Blogs$Model$BlogEntryView(blogId));
+						author$project$Model$BlogState(
+							author$project$Blogs$Model$BlogEntryView(blogId)));
 				case 'BlogList':
-					return _Utils_Tuple2(author$project$Model$Loaded, author$project$Blogs$Model$ListView);
-				default:
 					return _Utils_Tuple2(
-						author$project$Model$Error('Page not found'),
-						author$project$Blogs$Model$NotFound);
+						author$project$Model$Loaded,
+						author$project$Model$BlogState(author$project$Blogs$Model$ListView));
+				default:
+					return _Utils_Tuple2(author$project$Model$Loaded, author$project$Model$MainState);
 			}
 		}();
 		var pageState = _n0.a;
-		var blogs = _n0.b;
-		var _n2 = A2(elm$core$Debug$log, 'init', url);
+		var dataState = _n0.b;
 		return _Utils_Tuple2(
-			A3(author$project$Model$Model, key, pageState, blogs),
+			A3(author$project$Model$Model, key, pageState, dataState),
 			elm$core$Platform$Cmd$none);
 	});
 var author$project$Message$OnLocationChange = function (a) {
@@ -5725,15 +5724,14 @@ var author$project$Message$OnLocationChange = function (a) {
 var author$project$Message$OnUrlRequest = function (a) {
 	return {$: 'OnUrlRequest', a: a};
 };
-var author$project$Blogs$Update$update = F2(
-	function (msg, model) {
-		if (msg.$ === 'ViewList') {
-			return author$project$Blogs$Model$ListView;
-		} else {
-			var blogId = msg.a;
-			return author$project$Blogs$Model$BlogEntryView(blogId);
-		}
-	});
+var author$project$Blogs$Update$update = function (msg) {
+	if (msg.$ === 'ViewList') {
+		return author$project$Blogs$Model$ListView;
+	} else {
+		var blogId = msg.a;
+		return author$project$Blogs$Model$BlogEntryView(blogId);
+	}
+};
 var author$project$Model$Loading = {$: 'Loading'};
 var elm$browser$Browser$External = function (a) {
 	return {$: 'External', a: a};
@@ -6026,12 +6024,15 @@ var author$project$Update$update = F2(
 		switch (msg.$) {
 			case 'BlogsMsg':
 				var blogsMsg = msg.a;
-				var subModel = A2(author$project$Blogs$Update$update, blogsMsg, model.blogs);
+				var subModel = author$project$Blogs$Update$update(blogsMsg);
 				var pageState = _Utils_eq(model.pageState, author$project$Model$Loading) ? author$project$Model$Loaded : author$project$Model$Loading;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{blogs: subModel, pageState: pageState}),
+						{
+							dataState: author$project$Model$BlogState(subModel),
+							pageState: pageState
+						}),
 					elm$core$Platform$Cmd$none);
 			case 'OnLocationChange':
 				var url = msg.a;
@@ -6058,21 +6059,12 @@ var author$project$Update$update = F2(
 	});
 var elm$html$Html$a = _VirtualDom_node('a');
 var elm$html$Html$div = _VirtualDom_node('div');
-var elm$html$Html$h1 = _VirtualDom_node('h1');
-var elm$html$Html$li = _VirtualDom_node('li');
+var elm$html$Html$i = _VirtualDom_node('i');
+var elm$html$Html$img = _VirtualDom_node('img');
+var elm$html$Html$p = _VirtualDom_node('p');
 var elm$html$Html$section = _VirtualDom_node('section');
-var elm$html$Html$span = _VirtualDom_node('span');
 var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
-var elm$html$Html$ul = _VirtualDom_node('ul');
-var elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var elm$html$Html$Attributes$attribute = elm$virtual_dom$VirtualDom$attribute;
 var elm$json$Json$Encode$string = _Json_wrap;
 var elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -6081,6 +6073,7 @@ var elm$html$Html$Attributes$stringProperty = F2(
 			key,
 			elm$json$Json$Encode$string(string));
 	});
+var elm$html$Html$Attributes$alt = elm$html$Html$Attributes$stringProperty('alt');
 var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
 var elm$html$Html$Attributes$href = function (url) {
 	return A2(
@@ -6088,123 +6081,6 @@ var elm$html$Html$Attributes$href = function (url) {
 		'href',
 		_VirtualDom_noJavaScriptUri(url));
 };
-var author$project$Blogs$View$blogsHeader = A2(
-	elm$html$Html$section,
-	_List_fromArray(
-		[
-			elm$html$Html$Attributes$class('page-title bg-gray')
-		]),
-	_List_fromArray(
-		[
-			A2(
-			elm$html$Html$div,
-			_List_fromArray(
-				[
-					elm$html$Html$Attributes$class('container')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					elm$html$Html$div,
-					_List_fromArray(
-						[
-							elm$html$Html$Attributes$class('row')
-						]),
-					_List_fromArray(
-						[
-							A2(
-							elm$html$Html$div,
-							_List_fromArray(
-								[
-									elm$html$Html$Attributes$class('col-md-8 col-sm-12 wow fadeInUp'),
-									A2(elm$html$Html$Attributes$attribute, 'data-wow-duration', '300ms')
-								]),
-							_List_fromArray(
-								[
-									A2(
-									elm$html$Html$h1,
-									_List_fromArray(
-										[
-											elm$html$Html$Attributes$class('black-text')
-										]),
-									_List_fromArray(
-										[
-											elm$html$Html$text('A Journey To Awesome')
-										])),
-									A2(
-									elm$html$Html$span,
-									_List_fromArray(
-										[
-											elm$html$Html$Attributes$class('xs-display-none')
-										]),
-									_List_fromArray(
-										[
-											elm$html$Html$text('Toastmaster speeches: My thoughts on life, family and everything in between...')
-										])),
-									A2(
-									elm$html$Html$div,
-									_List_fromArray(
-										[
-											elm$html$Html$Attributes$class('separator-line margin-three bg-black no-margin-lr sm-margin-top-three sm-margin-bottom-three no-margin-bottom xs-display-none')
-										]),
-									_List_Nil)
-								])),
-							A2(
-							elm$html$Html$div,
-							_List_fromArray(
-								[
-									elm$html$Html$Attributes$class('col-md-4 col-sm-12 breadcrumb text-uppercase wow fadeInUp xs-display-none'),
-									A2(elm$html$Html$Attributes$attribute, 'data-wow-duration', '600ms')
-								]),
-							_List_fromArray(
-								[
-									A2(
-									elm$html$Html$ul,
-									_List_Nil,
-									_List_fromArray(
-										[
-											A2(
-											elm$html$Html$li,
-											_List_Nil,
-											_List_fromArray(
-												[
-													A2(
-													elm$html$Html$a,
-													_List_fromArray(
-														[
-															elm$html$Html$Attributes$href('#/blogs')
-														]),
-													_List_fromArray(
-														[
-															elm$html$Html$text('Blogs')
-														]))
-												])),
-											A2(
-											elm$html$Html$li,
-											_List_Nil,
-											_List_fromArray(
-												[
-													A2(
-													elm$html$Html$a,
-													_List_fromArray(
-														[
-															elm$html$Html$Attributes$href('#/blogs')
-														]),
-													_List_fromArray(
-														[
-															elm$html$Html$text('About me')
-														]))
-												]))
-										])),
-									elm$html$Html$text('                    ')
-								]))
-						]))
-				]))
-		]));
-var elm$html$Html$i = _VirtualDom_node('i');
-var elm$html$Html$img = _VirtualDom_node('img');
-var elm$html$Html$p = _VirtualDom_node('p');
-var elm$html$Html$Attributes$alt = elm$html$Html$Attributes$stringProperty('alt');
 var elm$html$Html$Attributes$src = function (url) {
 	return A2(
 		elm$html$Html$Attributes$stringProperty,
@@ -6826,6 +6702,7 @@ var author$project$Blogs$View$listBlogs = A2(
 				]))
 		]));
 var elm$html$Html$blockquote = _VirtualDom_node('blockquote');
+var elm$html$Html$h1 = _VirtualDom_node('h1');
 var elm$html$Html$h6 = _VirtualDom_node('h6');
 var author$project$Blogs$Blog$View$Blog1$view = function () {
 	var pText = function (s) {
@@ -7371,30 +7248,21 @@ var author$project$Error$View$view = function (message) {
 				elm$html$Html$text(message)
 			]));
 };
-var author$project$Blogs$View$view = function (model) {
-	var body = function () {
-		switch (model.$) {
-			case 'ListView':
-				return author$project$Blogs$View$listBlogs;
-			case 'BlogEntryView':
-				var blogId = model.a;
-				return author$project$Blogs$View$readBlog(blogId);
-			default:
-				return author$project$Error$View$view('Not found');
-		}
-	}();
-	return _List_fromArray(
-		[author$project$Blogs$View$blogsHeader, body]);
-};
-var author$project$Message$BlogsMsg = function (a) {
-	return {$: 'BlogsMsg', a: a};
-};
 var elm$html$Html$button = _VirtualDom_node('button');
-var elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
-var elm$html$Html$map = elm$virtual_dom$VirtualDom$map;
+var elm$html$Html$li = _VirtualDom_node('li');
 var elm$html$Html$nav = _VirtualDom_node('nav');
+var elm$html$Html$span = _VirtualDom_node('span');
+var elm$html$Html$ul = _VirtualDom_node('ul');
+var elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var elm$html$Html$Attributes$attribute = elm$virtual_dom$VirtualDom$attribute;
 var elm$html$Html$Attributes$type_ = elm$html$Html$Attributes$stringProperty('type');
-var author$project$View$contents = function (model) {
+var author$project$Blogs$View$view = function (model) {
 	var header = A2(
 		elm$html$Html$nav,
 		_List_fromArray(
@@ -7424,10 +7292,39 @@ var author$project$View$contents = function (model) {
 								elm$html$Html$div,
 								_List_fromArray(
 									[
-										elm$html$Html$Attributes$class('col-md-3 col-sm-3 col-xs-6')
+										elm$html$Html$Attributes$class('col-md-8 col-sm-3 col-xs-6 wow fadeInUp'),
+										A2(elm$html$Html$Attributes$attribute, 'data-wow-duration', '300ms')
 									]),
-								_List_Nil),
-								elm$html$Html$text('                    '),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$h1,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('black-text')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('A Journey To Awesome')
+											])),
+										A2(
+										elm$html$Html$span,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('xs-display-none')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('From noob public speaker all the way to the World Championship of Public Speaking...someday!')
+											])),
+										A2(
+										elm$html$Html$div,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('separator-line margin-three bg-black no-margin-lr sm-margin-top-three sm-margin-bottom-three no-margin-bottom xs-display-none')
+											]),
+										_List_Nil)
+									])),
 								A2(
 								elm$html$Html$div,
 								_List_fromArray(
@@ -7484,7 +7381,7 @@ var author$project$View$contents = function (model) {
 								elm$html$Html$div,
 								_List_fromArray(
 									[
-										elm$html$Html$Attributes$class('col-md-9 text-right')
+										elm$html$Html$Attributes$class('col-md-4 text-right')
 									]),
 								_List_fromArray(
 									[
@@ -7518,7 +7415,29 @@ var author$project$View$contents = function (model) {
 																	]),
 																_List_fromArray(
 																	[
-																		elm$html$Html$text('Blogs')
+																		elm$html$Html$text('Getting started with Toastmasters')
+																	])),
+																A2(
+																elm$html$Html$a,
+																_List_fromArray(
+																	[
+																		elm$html$Html$Attributes$class('inner-link'),
+																		elm$html$Html$Attributes$href('#/blogs')
+																	]),
+																_List_fromArray(
+																	[
+																		elm$html$Html$text('My progress')
+																	])),
+																A2(
+																elm$html$Html$a,
+																_List_fromArray(
+																	[
+																		elm$html$Html$Attributes$class('inner-link'),
+																		elm$html$Html$Attributes$href('#/blogs')
+																	]),
+																_List_fromArray(
+																	[
+																		elm$html$Html$text('My speeches')
 																	]))
 															]))
 													])),
@@ -7529,36 +7448,799 @@ var author$project$View$contents = function (model) {
 					]))
 			]));
 	var body = function () {
-		var _n0 = model.pageState;
-		switch (_n0.$) {
-			case 'Loading':
-				return _List_fromArray(
-					[
-						A2(
-						elm$html$Html$div,
-						_List_Nil,
-						_List_fromArray(
-							[
-								elm$html$Html$text('Still loading data')
-							]))
-					]);
-			case 'Loaded':
-				return A2(
-					elm$core$List$map,
-					elm$html$Html$map(author$project$Message$BlogsMsg),
-					author$project$Blogs$View$view(model.blogs));
+		switch (model.$) {
+			case 'ListView':
+				return author$project$Blogs$View$listBlogs;
+			case 'BlogEntryView':
+				var blogId = model.a;
+				return author$project$Blogs$View$readBlog(blogId);
 			default:
-				var message = _n0.a;
-				return _List_fromArray(
-					[
-						author$project$Error$View$view(message)
-					]);
+				return author$project$Error$View$view('Not found');
 		}
 	}();
+	return _List_fromArray(
+		[header, body]);
+};
+var elm$html$Html$ol = _VirtualDom_node('ol');
+var elm$html$Html$Attributes$id = elm$html$Html$Attributes$stringProperty('id');
+var author$project$Home$View$body = A2(
+	elm$html$Html$section,
+	_List_fromArray(
+		[
+			elm$html$Html$Attributes$class('carousel slide carousel-slide'),
+			elm$html$Html$Attributes$id('myCarousel')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			elm$html$Html$ol,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('carousel-indicators xs-indicators-black')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$html$Html$li,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$class('active'),
+							A2(elm$html$Html$Attributes$attribute, 'data-slide-to', '0'),
+							A2(elm$html$Html$Attributes$attribute, 'data-target', '#myCarousel')
+						]),
+					_List_Nil),
+					A2(
+					elm$html$Html$li,
+					_List_fromArray(
+						[
+							A2(elm$html$Html$Attributes$attribute, 'data-slide-to', '1'),
+							A2(elm$html$Html$Attributes$attribute, 'data-target', '#myCarousel')
+						]),
+					_List_Nil),
+					A2(
+					elm$html$Html$li,
+					_List_fromArray(
+						[
+							A2(elm$html$Html$Attributes$attribute, 'data-slide-to', '2'),
+							A2(elm$html$Html$Attributes$attribute, 'data-target', '#myCarousel')
+						]),
+					_List_Nil)
+				])),
+			elm$html$Html$text('            '),
+			A2(
+			elm$html$Html$div,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('carousel-inner')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$html$Html$div,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$class('item active full-screen')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('fill'),
+									A2(elm$html$Html$Attributes$attribute, 'style', 'background-image:url(\'images/man-working-in-modern-office.jpg\');')
+								]),
+							_List_Nil),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('opacity-full bg-white display-none xs-display-block')
+								]),
+							_List_Nil),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('container')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('row')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('container full-screen position-relative')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$div,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('slider-typography')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$div,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('slider-text-middle-main')
+																]),
+															_List_fromArray(
+																[
+																	A2(
+																	elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$Attributes$class('slider-text-middle slider-text-middle6 padding-left-right-px wow fadeInUp slider-text')
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			elm$html$Html$div,
+																			_List_fromArray(
+																				[
+																					elm$html$Html$Attributes$class('col-md-3 col-sm-5 col-xs-6 text-left animated fadeInUp no-padding')
+																				]),
+																			_List_fromArray(
+																				[
+																					A2(
+																					elm$html$Html$h1,
+																					_List_Nil,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('Innovation Through ')
+																						])),
+																					A2(
+																					elm$html$Html$div,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$Attributes$class('separator-line bg-yellow no-margin-lr')
+																						]),
+																					_List_Nil),
+																					A2(
+																					elm$html$Html$span,
+																					_List_Nil,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('We consult on digital strategy & craft meaningful connections with your customers across web.')
+																						])),
+																					A2(
+																					elm$html$Html$a,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$Attributes$class('highlight-button btn inner-link no-margin-lr no-margin-bottom'),
+																							elm$html$Html$Attributes$href('#portfolio')
+																						]),
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('Digital Marketing')
+																						]))
+																				]))
+																		]))
+																]))
+														]))
+												]))
+										]))
+								]))
+						])),
+					elm$html$Html$text('                '),
+					A2(
+					elm$html$Html$div,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$class('item full-screen')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('fill'),
+									A2(elm$html$Html$Attributes$attribute, 'style', 'background-image:url(\'images/notebook-and-glasses.jpg\');')
+								]),
+							_List_Nil),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('opacity-full bg-white display-none xs-display-block')
+								]),
+							_List_Nil),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('container')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('row')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('container full-screen position-relative')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$div,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('slider-typography')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$div,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('slider-text-middle-main')
+																]),
+															_List_fromArray(
+																[
+																	A2(
+																	elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$Attributes$class('slider-text-middle slider-text-middle6 padding-left-right-px wow fadeInUp slider-text')
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			elm$html$Html$div,
+																			_List_fromArray(
+																				[
+																					elm$html$Html$Attributes$class('col-md-3 col-sm-5 col-xs-6 text-left animated fadeInUp no-padding')
+																				]),
+																			_List_fromArray(
+																				[
+																					A2(
+																					elm$html$Html$h1,
+																					_List_Nil,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('Digital Trend Challenges')
+																						])),
+																					A2(
+																					elm$html$Html$div,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$Attributes$class('separator-line bg-yellow no-margin-lr')
+																						]),
+																					_List_Nil),
+																					A2(
+																					elm$html$Html$span,
+																					_List_Nil,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('We believe in design, strategy and the ability of technology to transform organizations and lives.')
+																						])),
+																					A2(
+																					elm$html$Html$a,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$Attributes$class('highlight-button btn inner-link no-margin-lr no-margin-bottom'),
+																							elm$html$Html$Attributes$href('#portfolio')
+																						]),
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('Digital Marketing')
+																						]))
+																				]))
+																		]))
+																]))
+														]))
+												]))
+										]))
+								]))
+						])),
+					elm$html$Html$text('                '),
+					A2(
+					elm$html$Html$div,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$class('item full-screen')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('fill'),
+									A2(elm$html$Html$Attributes$attribute, 'style', 'background-image:url(\'images/rooftopper-looking-down.jpg\');')
+								]),
+							_List_Nil),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('opacity-full bg-white display-none xs-display-block')
+								]),
+							_List_Nil),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('container')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('row')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('container full-screen position-relative')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$div,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('slider-typography')
+														]),
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$div,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('slider-text-middle-main')
+																]),
+															_List_fromArray(
+																[
+																	A2(
+																	elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$Attributes$class('slider-text-middle slider-text-middle6 padding-left-right-px wow fadeInUp slider-text')
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			elm$html$Html$div,
+																			_List_fromArray(
+																				[
+																					elm$html$Html$Attributes$class('col-md-3 col-sm-5 col-xs-6 text-left animated fadeInUp no-padding')
+																				]),
+																			_List_fromArray(
+																				[
+																					A2(
+																					elm$html$Html$h1,
+																					_List_Nil,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('Innovative Businesses')
+																						])),
+																					A2(
+																					elm$html$Html$div,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$Attributes$class('separator-line bg-yellow no-margin-lr')
+																						]),
+																					_List_Nil),
+																					A2(
+																					elm$html$Html$span,
+																					_List_Nil,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('We create premium designs, technology, ecommerce, mobile & digital campaigns.')
+																						])),
+																					A2(
+																					elm$html$Html$a,
+																					_List_fromArray(
+																						[
+																							elm$html$Html$Attributes$class('highlight-button btn inner-link no-margin-lr no-margin-bottom'),
+																							elm$html$Html$Attributes$href('#blog')
+																						]),
+																					_List_fromArray(
+																						[
+																							elm$html$Html$text('Go Emotions!')
+																						]))
+																				]))
+																		]))
+																]))
+														]))
+												]))
+										]))
+								]))
+						])),
+					elm$html$Html$text('            ')
+				])),
+			A2(
+			elm$html$Html$a,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('left carousel-control'),
+					A2(elm$html$Html$Attributes$attribute, 'data-slide', 'prev'),
+					elm$html$Html$Attributes$href('#myCarousel')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$html$Html$img,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$alt(''),
+							elm$html$Html$Attributes$src('images/arrow-pre.png')
+						]),
+					_List_Nil),
+					elm$html$Html$text(' ')
+				])),
+			A2(
+			elm$html$Html$a,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('right carousel-control'),
+					A2(elm$html$Html$Attributes$attribute, 'data-slide', 'next'),
+					elm$html$Html$Attributes$href('#myCarousel')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$html$Html$img,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$alt(''),
+							elm$html$Html$Attributes$src('images/arrow-next.png')
+						]),
+					_List_Nil),
+					elm$html$Html$text(' ')
+				])),
+			elm$html$Html$text('        ')
+		]));
+var author$project$Home$View$header = A2(
+	elm$html$Html$nav,
+	_List_fromArray(
+		[
+			elm$html$Html$Attributes$class('navbar navbar-default navbar-fixed-top nav-transparent overlay-nav sticky-nav nav-border-bottom no-transition'),
+			A2(elm$html$Html$Attributes$attribute, 'role', 'navigation')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			elm$html$Html$div,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$class('container')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$html$Html$div,
+					_List_fromArray(
+						[
+							elm$html$Html$Attributes$class('row')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('col-md-3 col-sm-3 col-xs-6')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$a,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('logo-light'),
+											elm$html$Html$Attributes$href('index.html')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$img,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$alt(''),
+													elm$html$Html$Attributes$class('logo'),
+													elm$html$Html$Attributes$src('images/logo-light.png')
+												]),
+											_List_Nil)
+										])),
+									A2(
+									elm$html$Html$a,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('logo-dark'),
+											elm$html$Html$Attributes$href('index.html')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$img,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$alt(''),
+													elm$html$Html$Attributes$class('logo'),
+													elm$html$Html$Attributes$src('images/logo-light.png')
+												]),
+											_List_Nil)
+										]))
+								])),
+							elm$html$Html$text('                    '),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('navbar-header')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$button,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('navbar-toggle'),
+											A2(elm$html$Html$Attributes$attribute, 'data-target', '.navbar-collapse'),
+											A2(elm$html$Html$Attributes$attribute, 'data-toggle', 'collapse'),
+											elm$html$Html$Attributes$type_('button')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$span,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('sr-only')
+												]),
+											_List_fromArray(
+												[
+													elm$html$Html$text('Toggle navigation')
+												])),
+											A2(
+											elm$html$Html$span,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('icon-bar')
+												]),
+											_List_Nil),
+											A2(
+											elm$html$Html$span,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('icon-bar')
+												]),
+											_List_Nil),
+											A2(
+											elm$html$Html$span,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('icon-bar')
+												]),
+											_List_Nil)
+										]))
+								])),
+							A2(
+							elm$html$Html$div,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('col-md-9 text-right')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('navbar-collapse collapse')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$ul,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('nav navbar-nav navbar-right')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$a,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('inner-link'),
+																	elm$html$Html$Attributes$href('#myCarousel')
+																]),
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Home')
+																]))
+														])),
+													A2(
+													elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$a,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('inner-link'),
+																	elm$html$Html$Attributes$href('#features')
+																]),
+															_List_fromArray(
+																[
+																	elm$html$Html$text('About')
+																]))
+														])),
+													A2(
+													elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$a,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('inner-link'),
+																	elm$html$Html$Attributes$href('#animated-tab')
+																]),
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Services')
+																]))
+														])),
+													A2(
+													elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$a,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('inner-link'),
+																	elm$html$Html$Attributes$href('#portfolio')
+																]),
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Work')
+																]))
+														])),
+													A2(
+													elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$a,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('inner-link'),
+																	elm$html$Html$Attributes$href('#blog')
+																]),
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Blog')
+																]))
+														])),
+													A2(
+													elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$a,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('inner-link'),
+																	elm$html$Html$Attributes$href('#contact-us')
+																]),
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Contact')
+																]))
+														])),
+													A2(
+													elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															elm$html$Html$a,
+															_List_fromArray(
+																[
+																	elm$html$Html$Attributes$class('inner-link'),
+																	elm$html$Html$Attributes$href('index.html')
+																]),
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Demos')
+																]))
+														]))
+												])),
+											elm$html$Html$text('                        ')
+										]))
+								]))
+						]))
+				]))
+		]));
+var author$project$Home$View$view = A2(
+	elm$html$Html$div,
+	_List_Nil,
+	_List_fromArray(
+		[author$project$Home$View$header, author$project$Home$View$body]));
+var author$project$Message$BlogsMsg = function (a) {
+	return {$: 'BlogsMsg', a: a};
+};
+var elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
+var elm$html$Html$map = elm$virtual_dom$VirtualDom$map;
+var author$project$View$contents = function (model) {
 	return A2(
 		elm$html$Html$div,
 		_List_Nil,
-		A2(elm$core$List$cons, header, body));
+		function () {
+			var _n0 = model.pageState;
+			switch (_n0.$) {
+				case 'Loading':
+					return _List_fromArray(
+						[
+							A2(
+							elm$html$Html$div,
+							_List_Nil,
+							_List_fromArray(
+								[
+									elm$html$Html$text('Still loading data')
+								]))
+						]);
+				case 'Loaded':
+					var _n1 = model.dataState;
+					if (_n1.$ === 'BlogState') {
+						var blogState = _n1.a;
+						return A2(
+							elm$core$List$map,
+							elm$html$Html$map(author$project$Message$BlogsMsg),
+							author$project$Blogs$View$view(blogState));
+					} else {
+						return _List_fromArray(
+							[author$project$Home$View$view]);
+					}
+				default:
+					var message = _n0.a;
+					return _List_fromArray(
+						[
+							author$project$Error$View$view(message)
+						]);
+			}
+		}());
 };
 var author$project$View$view = function (model) {
 	return {

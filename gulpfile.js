@@ -11,7 +11,7 @@ var paths = {
 }
 
 gulp.task('elm-bundle', function(){
-  return gulp.src('src/Main.elm', { optimize: true })
+  return gulp.src('src/Main.elm', { optimize: false })
     .pipe(elm.bundle('bundle.js'))
     .pipe(gulp.dest(paths.dest));
 });

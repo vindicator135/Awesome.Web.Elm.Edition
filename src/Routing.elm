@@ -7,7 +7,7 @@ import Url.Parser as Parser exposing ((</>), Parser, int, map, oneOf, s, string,
 type Route
     = BlogList
     | BlogEntry Int
-    | NotFound
+    | Main
 
 
 matchers : Parser (Route -> a) a
@@ -25,7 +25,7 @@ parseUrl url =
             route
 
         Nothing ->
-            NotFound
+            Main
 
 
 fromFragment : Url -> Url

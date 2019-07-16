@@ -4,8 +4,8 @@ import Blogs.Message exposing (Msg(..))
 import Blogs.Model exposing (Model, ViewState(..))
 
 
-update : Msg -> Model -> Model
-update msg model =
+update : Msg -> Model
+update msg =
     case msg of
         ViewList ->
             ListView

@@ -5,7 +5,7 @@ import Browser exposing (..)
 import Browser.Navigation as Nav
 import Init exposing (init)
 import Message exposing (Msg(..))
-import Model exposing (Model, PageState(..))
+import Model exposing (Model, PageState(..), DataState(..))
 import Routing exposing (..)
 import Url as Url
 
@@ -16,8 +16,8 @@ update msg model =
         BlogsMsg blogsMsg ->
             let
                 subModel =
-                    Blogs.update blogsMsg model.blogs
-
+                    Blogs.update blogsMsg
+                    
                 pageState =
                     if model.pageState == Loading then
                         Loaded
@@ -25,7 +25,7 @@ update msg model =
                     else
                         Loading
             in
-            ( { model | pageState = pageState, blogs = subModel }
+            ( { model | pageState = pageState, dataState = BlogState subModel }
             , Cmd.none
             )
 
